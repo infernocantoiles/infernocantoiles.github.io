@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="it" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Selva Oscura: Il Viaggio Allegorico del Canto I dell'Inferno</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dante: {
+                            gold: '#f59e0b',
+                            goldDark: '#b45309',
+                            crimson: '#9f1239',
+                            crimsonDark: '#881337',
+                            darkBg: '#030712',
+                            cardBg: '#0f172a',
+                            borderGold: '#78350f',
+                            parchment: '#fef3c7'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'Georgia', 'serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #030712;
+            color: #f1f5f9;
+        }
+        h1, h2, h3, h4, .font-dante {
+            font-family: 'Cinzel', serif;
+        }
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+        }
+        .crimson-glow {
+            box-shadow: 0 0 20px rgba(159, 18, 57, 0.25);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d97706;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-950 text-slate-100 selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-amber-900/40 px-4 py-3 shadow-xl">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-amber-950/80 border border-amber-500/60 flex items-center justify-center text-amber-400 shadow-inner">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-lg md:text-xl font-bold font-dante text-amber-400 tracking-wide leading-tight">La Selva Oscura</h1>
+                    <p class="text-xs text-slate-400 hidden sm:block">Inferno, Canto I • Risorsa Didattica per le Scienze Umane</p>
+                </div>
+            </div>
+
+            <!-- STATS & ACTION BUTTONS -->
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-2 bg-slate-950 border border-amber-900/60 rounded-xl px-3 py-1.5 shadow-inner">
+                    <span class="text-amber-400 font-bold font-dante text-sm" id="xp-display">0 XP</span>
+                    <span class="text-slate-600">|</span>
+                    <span class="text-xs text-amber-200/90 font-medium" id="level-title">Viandante</span>
+                </div>
+
+                <button onclick="toggleEncyclopedia()" class="p-2 bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-800/50 rounded-xl transition-all flex items-center gap-1.5 text-xs font-semibold shadow-md" title="Glossario Canto I">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                    <span class="hidden md:inline">Glossario</span>
+                </button>
+
+                <button onclick="toggleMapModal()" class="p-2 bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-800/50 rounded-xl transition-all flex items-center gap-1.5 text-xs font-semibold shadow-md" title="Mappa del Percorso">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5-4V4l5 4m0 0l6-4m-6 4v16m6-16l5 4v16l-5-4m0 0L9 20"></path>
+                    </svg>
+                    <span class="hidden md:inline">Mappa</span>
+                </button>
+
+                <button onclick="toggleAudio()" id="audio-btn" class="p-2 bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-800/50 rounded-xl transition-all" title="Audio">
+                    <svg id="audio-icon-on" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PROGRESS BAR -->
+    <div class="w-full bg-slate-900 border-b border-amber-950 h-2.5 relative">
+        <div id="progress-bar" class="bg-gradient-to-r from-amber-700 via-amber-500 to-yellow-400 h-full transition-all duration-500" style="width: 0%"></div>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6 space-y-6">
+
+        <!-- CAPITOLO HERO BANNER -->
+        <section class="relative bg-gradient-to-r from-slate-900 via-slate-900 to-slate-950 border border-amber-900/60 rounded-2xl p-5 md:p-6 shadow-2xl gold-glow overflow-hidden">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 relative z-10">
+                <div class="space-y-1">
+                    <span id="chapter-tag" class="inline-block px-3 py-1 bg-amber-950/80 text-amber-300 border border-amber-700/60 rounded-full text-xs font-semibold uppercase tracking-wider">Capitolo 1 di 5</span>
+                    <h2 id="chapter-title" class="text-xl md:text-2xl font-bold font-dante text-amber-200">Lo Smarrimento nella Selva e il Sonno dell'Anima</h2>
+                    <p id="chapter-subtitle" class="text-xs md:text-sm text-slate-300 italic">Inferno, Canto I • Versi 1-12</p>
+                </div>
+                
+                <div class="flex items-center gap-3 bg-slate-950/80 p-3 rounded-xl border border-amber-900/40 shrink-0">
+                    <div id="chapter-badge-icon" class="w-10 h-10 rounded-lg bg-amber-950/80 border border-amber-500/50 flex items-center justify-center text-amber-400">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-[10px] text-slate-400 uppercase tracking-wider">Badge Capitolo</div>
+                        <div id="chapter-badge-name" class="text-xs font-semibold text-amber-300 font-dante">Viandante Consapevole</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SVG ILLUSTRATION DISPLAY -->
+            <div id="visual-container" class="mt-4 pt-4 border-t border-slate-800/80 flex flex-col items-center justify-center min-h-[140px]">
+                <div id="svg-illustration" class="w-full max-w-2xl h-32 md:h-40 flex items-center justify-center">
+                    <!-- Dynamic SVG content -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SUB-STAGES STEPPERS NAV -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4 overflow-x-auto">
+                <div class="flex items-center space-x-2 md:space-x-4 min-w-max">
+                    <button id="step-btn-1" class="step-tab font-semibold text-xs md:text-sm px-4 py-2 rounded-xl transition-all flex items-center gap-2 bg-amber-600 text-slate-950 font-dante">
+                        <span class="w-5 h-5 rounded-full bg-slate-950 text-amber-400 flex items-center justify-center text-xs font-bold">1</span>
+                        Fase 1: Parafrasi a Fronte
+                    </button>
+                    <span class="text-slate-600">→</span>
+                    <button id="step-btn-2" class="step-tab font-semibold text-xs md:text-sm px-4 py-2 rounded-xl opacity-50 cursor-not-allowed flex items-center gap-2 bg-slate-800 text-slate-300 font-dante">
+                        <span class="w-5 h-5 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center text-xs font-bold">2</span>
+                        Fase 2: Quiz a Doppia Domanda
+                    </button>
+                    <span class="text-slate-600">→</span>
+                    <button id="step-btn-3" class="step-tab font-semibold text-xs md:text-sm px-4 py-2 rounded-xl opacity-50 cursor-not-allowed flex items-center gap-2 bg-slate-800 text-slate-300 font-dante">
+                        <span class="w-5 h-5 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center text-xs font-bold">3</span>
+                        Fase 3: Analisi Critica
+                    </button>
+                </div>
+            </div>
+
+            <!-- FASE 1: PARAFRASI GUIDATA CON TESTO A FRONTE -->
+            <div id="stage-1" class="stage-content space-y-5">
+                <div class="bg-slate-800/40 p-4 rounded-xl border border-slate-700/60 flex flex-col md:flex-row justify-between md:items-center gap-2">
+                    <div>
+                        <h3 class="text-sm font-bold font-dante text-amber-400">Ricostruzione Sintattica e Testuale</h3>
+                        <p class="text-xs text-slate-300">Leggi le terzine originali a sinistra e seleziona le opzioni corrette nei menu a tendina a destra per completare la parafrasi.</p>
+                    </div>
+                    <button onclick="checkPhase1()" class="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold rounded-xl text-xs transition-all shadow-md shrink-0">
+                        Verifica Parafrasi
+                    </button>
+                </div>
+
+                <!-- SIDE BY SIDE CONTAINER -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- LEFT COLUMN: ORIGINAL DANTE TERSETS WITH GLOSSARY TOOLTIPS -->
+                    <div class="bg-slate-950 border border-amber-900/40 rounded-2xl p-5 space-y-4 shadow-inner">
+                        <div class="flex items-center justify-between border-b border-amber-900/30 pb-2">
+                            <span class="text-xs font-bold font-dante text-amber-400 uppercase tracking-wider">Testo Dantesco Originale</span>
+                            <span class="text-[10px] text-slate-500">Passa sopra i termini evidenziati per le note</span>
+                        </div>
+                        <div id="original-tercets-container" class="text-sm font-serif italic text-amber-100/90 leading-relaxed space-y-3">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: INTERACTIVE PARAPHRASE WITH SELECTS -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
+                        <div class="border-b border-slate-800 pb-2">
+                            <span class="text-xs font-bold font-dante text-amber-400 uppercase tracking-wider">Parafrasi Guidata (Ricostruzione)</span>
+                        </div>
+                        <div id="paraphrase-selects-container" class="text-xs md:text-sm text-slate-200 leading-loose font-sans space-y-3">
+                            <!-- Populated dynamically with <select> elements -->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="phase1-feedback" class="hidden p-4 rounded-xl border text-xs md:text-sm"></div>
+
+                <div class="flex justify-end pt-2">
+                    <button id="phase1-next-btn" disabled onclick="advanceToStage(2)" class="px-5 py-2.5 bg-amber-600 hover:bg-amber-500 disabled:opacity-40 disabled:cursor-not-allowed text-slate-950 font-bold rounded-xl transition-all shadow-md flex items-center gap-2 text-xs md:text-sm">
+                        <span>Passa alla Fase 2: Quiz</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- FASE 2: QUIZ A DOPPIA DOMANDA (TESTUALE + ALLEGORICO) -->
+            <div id="stage-2" class="stage-content hidden space-y-6">
+                <div class="bg-slate-800/40 p-4 rounded-xl border border-slate-700/60">
+                    <h3 class="text-sm font-bold font-dante text-amber-400">Verifica Analitica e Allegorica</h3>
+                    <p class="text-xs text-slate-300">Rispondi a entrambe le domande: la prima riguarda l'analisi linguistico-testuale, la seconda l'interpretazione simbolica e morale.</p>
+                </div>
+
+                <!-- QUESTION A: TESTUALE -->
+                <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 bg-amber-950 border border-amber-700/60 text-amber-300 font-bold text-xs rounded-md">Domanda A • Analisi Testuale</span>
+                    </div>
+                    <p id="quiz-qa-text" class="text-sm md:text-base font-semibold text-slate-100"></p>
+                    <div id="quiz-qa-options" class="grid grid-cols-1 gap-2 pt-2">
+                        <!-- Options generated dynamically -->
+                    </div>
+                    <div id="quiz-qa-feedback" class="hidden p-3 rounded-xl border text-xs"></div>
+                </div>
+
+                <!-- QUESTION B: ALLEGORICO -->
+                <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="px-2.5 py-0.5 bg-crimson-900/80 border border-rose-700/60 text-rose-300 font-bold text-xs rounded-md">Domanda B • Interpretazione Allegorica</span>
+                    </div>
+                    <p id="quiz-qb-text" class="text-sm md:text-base font-semibold text-slate-100"></p>
+                    <div id="quiz-qb-options" class="grid grid-cols-1 gap-2 pt-2">
+                        <!-- Options generated dynamically -->
+                    </div>
+                    <div id="quiz-qb-feedback" class="hidden p-3 rounded-xl border text-xs"></div>
+                </div>
+
+                <div class="flex justify-end pt-2">
+                    <button id="phase2-next-btn" disabled onclick="advanceToStage(3)" class="px-5 py-2.5 bg-amber-600 hover:bg-amber-500 disabled:opacity-40 disabled:cursor-not-allowed text-slate-950 font-bold rounded-xl transition-all shadow-md flex items-center gap-2 text-xs md:text-sm">
+                        <span>Passa alla Fase 3: Analisi Critica</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- FASE 3: RISPOSTA APERTA CRITICA CON VALUTAZIONE SEMANTICA -->
+            <div id="stage-3" class="stage-content hidden space-y-5">
+                <div class="bg-slate-800/40 p-4 rounded-xl border border-slate-700/60">
+                    <h3 class="text-sm font-bold font-dante text-amber-400">Riflessione Critico-Pedagogica</h3>
+                    <p id="open-prompt-question" class="text-xs md:text-sm text-slate-200 mt-1 leading-relaxed font-medium"></p>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="open-answer-text" class="block text-xs text-slate-400">
+                        Argomenta la tua risposta (Richieste almeno <span id="min-words-label" class="text-amber-400 font-bold">15</span> parole con riferimenti ai concetti chiave):
+                    </label>
+                    <textarea id="open-answer-text" rows="5" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-4 text-xs md:text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all" placeholder="Scrivi qui la tua riflessione analitica..."></textarea>
+                    <div class="flex justify-between text-[11px] text-slate-500">
+                        <span id="word-counter-display">Parole: 0</span>
+                        <span>Valutazione Semantica Automatizzata</span>
+                    </div>
+                </div>
+
+                <div id="open-eval-feedback" class="hidden p-4 rounded-xl border text-xs md:text-sm space-y-2"></div>
+
+                <div class="flex justify-between items-center pt-2">
+                    <button onclick="evaluateOpenAnswer()" class="px-5 py-2.5 bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold rounded-xl text-xs md:text-sm transition-all shadow-md">
+                        Valuta Risposta
+                    </button>
+                    <button id="chapter-finish-btn" disabled onclick="completeChapter()" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-40 disabled:cursor-not-allowed text-slate-950 font-bold rounded-xl text-xs md:text-sm transition-all shadow-md flex items-center gap-2">
+                        <span>Completa Capitolo</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- BADGES DISPLAY PANEL -->
+        <section class="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-xl space-y-4">
+            <h3 class="text-sm font-bold font-dante text-amber-400 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                Traguardi d'Apprendimento (Badge Sbloccati)
+            </h3>
+            <div id="badges-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                <!-- Rendered dynamically -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-4 px-4 text-center text-xs text-slate-500">
+        <p>Progetto Didattico "La Selva Oscura" • Liceo delle Scienze Umane • Canto I dell'Inferno di Dante Alighieri</p>
+    </footer>
+
+    <!-- MAP MODAL / TEACHER UNLOCK -->
+    <div id="map-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-amber-900/60 rounded-2xl max-w-xl w-full p-6 shadow-2xl space-y-5">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                <h3 class="text-base font-bold font-dante text-amber-400">Mappa del Percorso Didattico</h3>
+                <button onclick="toggleMapModal()" class="text-slate-400 hover:text-white text-lg">✕</button>
+            </div>
+            
+            <div id="map-chapters-list" class="space-y-2.5">
+                <!-- Chapters status list -->
+            </div>
+
+            <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-800 space-y-2">
+                <h4 class="text-xs font-semibold text-amber-300 font-dante">Sblocco Rapido per il Docente</h4>
+                <div class="flex gap-2">
+                    <input type="password" id="teacher-passcode" placeholder="Codice docente (dante2026)" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-slate-200 focus:outline-none focus:border-amber-500 flex-grow">
+                    <button onclick="unlockAllChapters()" class="bg-amber-700 hover:bg-amber-600 text-slate-950 font-bold px-3.5 py-1.5 rounded-lg text-xs transition-colors">
+                        Sblocca
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GLOSSARY MODAL (STRICTLY CANTO I) -->
+    <div id="encyclopedia-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-slate-900 border border-amber-900/60 rounded-2xl max-w-3xl w-full max-h-[85vh] flex flex-col shadow-2xl overflow-hidden">
+            <div class="p-4 border-b border-slate-800 flex justify-between items-center bg-slate-900">
+                <div>
+                    <h3 class="text-base md:text-lg font-bold font-dante text-amber-400">Glossario & Simboli del Canto I</h3>
+                    <p class="text-xs text-slate-400">Guida alle allegorie, personaggi e figure citate direttamente nel primo canto</p>
+                </div>
+                <button onclick="toggleEncyclopedia()" class="text-slate-400 hover:text-white text-lg">✕</button>
+            </div>
+
+            <!-- TABS -->
+            <div class="flex border-b border-slate-800 bg-slate-950/60 text-xs font-semibold">
+                <button onclick="switchEncTab('concetti')" id="enc-tab-concetti" class="flex-1 py-2.5 px-3 text-center border-b-2 border-amber-500 text-amber-400 font-dante">Concetti & Simboli</button>
+                <button onclick="switchEncTab('fiere')" id="enc-tab-fiere" class="flex-1 py-2.5 px-3 text-center border-b-2 border-transparent text-slate-400 font-dante hover:text-slate-200">Le Tre Fiere</button>
+                <button onclick="switchEncTab('personaggi')" id="enc-tab-personaggi" class="flex-1 py-2.5 px-3 text-center border-b-2 border-transparent text-slate-400 font-dante hover:text-slate-200">Personaggi & Guide</button>
+            </div>
+
+            <div id="encyclopedia-content" class="p-5 overflow-y-auto space-y-3 flex-grow text-xs md:text-sm text-slate-300">
+                <!-- Content injected dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APP LOGIC & DATA -->
+    <script>
+        /* ==========================================================================
+           5 CHAPTERS DATA STRUCTURE ( Inferno Canto I )
+           ========================================================================== */
+        const chaptersData = [
+            {
+                id: 1,
+                title: "Lo Smarrimento nella Selva e il Sonno dell'Anima",
+                subtitle: "Inferno, Canto I • Versi 1-12",
+                badgeName: "Viandante Consapevole",
+                badgeDesc: "Ha riconosciuto la condizione di smarrimento morale ed esistenziale.",
+                svgType: "forest",
+                
+                // PHASE 1: SIDE BY SIDE TEXT AND PARAPHRASE
+                phase1: {
+                    tercets: [
+                        {
+                            lines: [
+                                { num: 1, text: "Nel mezzo del cammin di nostra vita" },
+                                { num: 2, text: "mi ritrovai per una <span class='text-amber-400 underline decoration-amber-500/50 cursor-help' title='Selva oscura: allegoria del peccato e del disordine morale'>selva oscura</span>," },
+                                { num: 3, text: "ché la diritta via era smarrita." }
+                            ]
+                        },
+                        {
+                            lines: [
+                                { num: 4, text: "Ahi quanto a dir qual era è cosa dura" },
+                                { num: 5, text: "esta selva selvaggia e aspra e forte" },
+                                { num: 6, text: "che nel pensier rinova la paura!" }
+                            ]
+                        },
+                        {
+                            lines: [
+                                { num: 7, text: "Tant’ è amara che poco è più morte;" },
+                                { num: 8, text: "ma per trattar del ben ch’i’ vi trovai," },
+                                { num: 9, text: "dirò de l’altre cose ch’i’ v’ho scorte." }
+                            ]
+                        },
+                        {
+                            lines: [
+                                { num: 10, text: "Io non so ben ridir com’ i’ v’intrai," },
+                                { num: 11, text: "tant’ era pien di <span class='text-amber-400 underline decoration-amber-500/50 cursor-help' title='Sonno: allegoria del torpore morale della coscienza'>sonno</span> a quel punto" },
+                                { num: 12, text: "che la verace via abbandonai." }
+                            ]
+                        }
+                    ],
+                    selects: [
+                        { id: "p1_s1", prefix: "A trentacinque anni (metà della vita), mi ritrovai in uno stato di ", options: ["perdizione morale", "solitudine fisica", "povertà economica"], correct: "perdizione morale", suffix: " (selva oscura), poiché la via della virtù era smarrita." },
+                        { id: "p1_s2", prefix: "È un'esperienza talmente dolorosa che a ricordarla si rinnova la ", options: ["paura", "rabbia", "superbia"], correct: "paura", suffix: " e angoscia provata." },
+                        { id: "p1_s3", prefix: "Non so spiegare bene come vi sia entrato, poiché ero pieno di ", options: ["sonno della coscienza", "orgoglio intellettuale", "desiderio di avventura"], correct: "sonno della coscienza", suffix: " quando smarrii il vero cammino." }
+                    ],
+                    explanation: "Dante colloca l'esperienza nel 1300 a 35 anni. Il 'sonno' rappresenta l'assopimento della coscienza morale che precede lo smarrimento."
+                },
+
+                // PHASE 2: DUAL QUIZ
+                phase2: {
+                    quizA: {
+                        question: "Per quale motivo stilistico e concettuale Dante utilizza l'aggettivo 'nostra' invece di 'mia' al verso 1 ('Nel mezzo del cammin di nostra vita')?",
+                        options: [
+                            { text: "Per indicare che il viaggio è compiuto in compagnia di Virgilio fin dal primo momento.", correct: false },
+                            { text: "Per attribuire alla propria esperienza individuale un valore universale riguardante tutta l'umanità.", correct: true },
+                            { text: "Per fare riferimento specifico alla sola comunità dei cittadini fiorentini.", correct: false },
+                            { text: "Per una semplice ragione di metrica e rima incatenata nella terzina.", correct: false }
+                        ],
+                        explanation: "L'aggettivo 'nostra' trasforma la vicenda personale di Dante nell'esperienza universale dell'uomo (Homo Viator) in cerca di salvezza."
+                    },
+                    quizB: {
+                        question: "Che cosa simboleggia allegoricamente la 'selva oscura' nel contesto del Canto I?",
+                        options: [
+                            { text: "Un reale bosco intricato del Casentino dove Dante si perse durante un viaggio.", correct: false },
+                            { text: "Lo stato di errore, peccato e disordine morale ed esistenziale dell'individuo e della società.", correct: true },
+                            { text: "La nostalgia amara provata dal poeta dopo la condanna all'esilio.", correct: false },
+                            { text: "Il limite invalicabile della conoscenza scientifica umana dell'epoca.", correct: false }
+                        ],
+                        explanation: "La selva oscura incarna il buio del peccato e della perdita di orientamento etico."
+                    }
+                },
+
+                // PHASE 3: OPEN CRITICAL PROMPT
+                phase3: {
+                    question: "Analizza il valore psicologico e morale del 'sonno dell'anima' (v. 11). In che modo l'assenza di vigilanza critica impedisce all'individuo di avvedersi dello smarrimento prima che sia troppo tardi?",
+                    keywords: ["sonno", "coscienza", "vigilanza", "smarrimento", "consapevolezza", "errore", "attenzione", "moralita", "scelta"],
+                    minWords: 15,
+                    hints: "Rifletti su come l'assopimento della consapevolezza e la pigrizia etica portino a scivolare nel male senza rendersene conto."
+                }
+            },
+            {
+                id: 2,
+                title: "La Luce sul Colle e la Speranza Interrotta",
+                subtitle: "Inferno, Canto I • Versi 13-30",
+                badgeName: "Verso la Luce",
+                badgeDesc: "Ha identificato il Colle Illuminato come meta della virtù e della felicità terrena.",
+                svgType: "hill",
+                
+                phase1: {
+                    tercets: [
+                        {
+                            lines: [
+                                { num: 13, text: "Ma poi ch’i’ fui al piè d’un <span class='text-amber-400 underline decoration-amber-500/50 cursor-help' title='Colle: la vita virtuosa e la felicita terrena'>colle</span> giunto," },
+                                { num: 14, text: "là dove terminava quella valle" },
+                                { num: 15, text: "che m’avea di paura il cor compunto," }
+                            ]
+                        },
+                        {
+                            lines: [
+                                { num: 16, text: "guardai in alto e vidi le sue spalle" },
+                                { num: 17, text: "vestite già de’ raggi del <span class='text-amber-400 underline decoration-amber-500/50 cursor-help' title='Pianeta: il Sole, simbolo della Grazia divina'>pianeta</span>" },
+                                { num: 18, text: "che mena dritto altrui per ogne calle." }
+                            ]
+                        },
+                        {
+                            lines: [
+                                { num: 22, text: "E come quei che con lena affannato," },
+                                { num: 23, text: "uscito fuor del pelago a la riva," },
+                                { num: 24, text: "si volge a l’acqua perigliosa e guata..." }
+                            ]
+                        }
+                    ],
+                    selects: [
+                        { id: "p2_s1", prefix: "Giunto ai piedi di un colle, Dante alza lo sguardo e vede la sua cima illuminata dal ", options: ["Sole (pianeta)", "Fuoco sacro", "Luce lunare"], correct: "Sole (pianeta)", suffix: ", simbolo della Grazia e guida verso la retta via." },
+                        { id: "p2_s2", prefix: "Il cuore del poeta ritrova un poco di pace dopo la grande ", options: ["paura", "superbia", "rabbia"], correct: "paura", suffix: " provata durante la notte nella selva." },
+                        { id: "p2_s3", prefix: "Dante paragona il suo stato d'animo a quello di un ", options: ["naufrago scampato al mare", "soldato vincitore", "pellegrino stanco"], correct: "naufrago scampato al mare", suffix: " che si volge indietro a guardare l'acqua pericolosa." }
+                    ],
+                    explanation: "La vista del colle e del sole riaccende la speranza, ma il tentativo di salita diretta fallirà per la mancanza di una guida."
+                },
+
+                phase2: {
+                    quizA: {
+                        question: "Cosa intende Dante con la perifrasi 'il pianeta / che mena dritto altrui per ogne calle' (vv. 17-18)?",
+                        options: [
+                            { text: "La Luna, che illumina i passi dei viandanti notturni.", correct: false },
+                            { text: "Il Sole, che nell'astronomia tolemaica era considerato un pianeta.", correct: true },
+                            { text: "La stella Venere, simbolo dell'amore terreno.", correct: false },
+                            { text: "La stella Polare, punto di riferimento dei naviganti.", correct: false }
+                        ],
+                        explanation: "Nel sistema tolemaico il Sole è un pianeta e simboleggia la Grazia divina che guida la ragione."
+                    },
+                    quizB: {
+                        question: "Quale valore allegorico assume il 'colle illuminato' ai piedi del quale giunge Dante?",
+                        options: [
+                            { text: "La felicità terrena e la vita virtuosa a cui l'uomo aspira.", correct: true },
+                            { text: "Il potere temporale dell'Impero germanico.", correct: false },
+                            { text: "La salvezza finale già raggiunta in Paradiso.", correct: false },
+                            { text: "L'orgoglio filosofico presuntuoso della ragione umana.", correct: false }
+                        ],
+                        explanation: "Il colle rappresenta l'altezza della virtù e della serenità terrena."
+                    }
+                },
+
+                phase3: {
+                    question: "Perché la sola visione della meta (il colle illuminato) non è sufficiente a Dante per salvarsi e uscire dalla crisi? Quale insegnamento psicologico si trae dall'impossibilità di una scorciatoia?",
+                    keywords: ["guida", "scorciatoia", "limiti", "presunzione", "consapevolezza", "difficolta", "percorso", "aiuto", "ostacoli"],
+                    minWords: 15,
+                    hints: "Considera che la sola volontà non basta quando le radici del male non sono state prima affrontate e comprese."
+                }
+            },
+            {
+                id: 3,
+                title: "L'Incontro con le Tre Fiere: Lonza, Leone e Lupa",
+                subtitle: "Inferno, Canto I • Versi 31-60",
+                badgeName: "Vincitore delle Passioni",
+                badgeDesc: "Ha decodificato la natura ostacolante dei vizi e delle passioni sfrenate.",
+                svgType: "beasts",
+                
+                phase1: {
+                    tercets: [
+                        {
+                            lines: [
+                                { num: 31, text: "Ed ecco, quasi al cominciar de l’erta," },
+                                { num: 32, text: "una <span class='text-amber-400 underline decoration-amber-500/50 cursor-help' title='Lonza: simboleggia la lussuria o invidia'>lonza</span> leggiera e presta molto," },
+                                { num: 33, text: "che di pel macolato era coverta;" }
+                            ]
+                        },
+                        {
+                            lines: [
+                                { num: 45, text: "venisse a me con la test’ alta e con rabbiosa fame," },
+                                { num: 46, text: "sì che parea che l’aere ne tremosse." },
+                                { num: 47, text: "Ed una <span class='text-amber-400 underline decoration-amber-500/50 cursor-help' title='Lupa: simboleggia l avarizia e la cupidigia insaziabile'>lupa</span>, che di tutte brame" },
+                                { num: 48, text: "parea carca ne la sua magrezza..." }
+                            ]
+                        },
+                        {
+                            lines: [
+                                { num: 61, text: "Mentre ch’i’ <span class='text-amber-400 underline decoration-amber-500/50 cursor-help' title='Rovinava in basso: il regresso morale verso l oscurita della selva'>rovinava in basso loco</span>..." }
+                            ]
+                        }
+                    ],
+                    selects: [
+                        { id: "p3_s1", prefix: "All'inizio della salita compaiono tre fiera: la Lonza dal pelo maculato (simbolo di ", options: ["lussuria", "accidia", "gola"], correct: "lussuria", suffix: ") che agilmente sbarra il passo." },
+                        { id: "p3_s2", prefix: "Poi appare un Leone impaurante con testa alta (simbolo di ", options: ["superbia", "falsità", "vigliaccheria"], correct: "superbia", suffix: ") e rabbiosa fame." },
+                        { id: "p3_s3", prefix: "Infine la Lupa magra e insaziabile (simbolo di ", options: ["avarizia/cupidigia", "eresia", "violenza"], correct: "avarizia/cupidigia", suffix: ") spinge Dante a rovinare indietro verso la selva." }
+                    ],
+                    explanation: "Le tre fiere incarnano le passioni e i vizi capitali che impediscono la salita diretta al colle."
+                },
+
+                phase2: {
+                    quizA: {
+                        question: "Quale figura retorica e registro stilistico caratterizza la descrizione della Lupa ('che di tutte brame / parea carca ne la sua magrezza')?",
+                        options: [
+                            { text: "Antitesi tra la 'magrezza' fisica del corpo e la 'carica di brame' insaziabili dell'anima.", correct: true },
+                            { text: "Ossimoro comico pensato per alleggerire la drammaticità della scena.", correct: false },
+                            { text: "Litote ironica volta a ridimensionare il pericolo rappresentato dalla fiera.", correct: false },
+                            { text: "Anastrofe senza valore simbolico o morale.", correct: false }
+                        ],
+                        explanation: "L'antitesi evidenzia come l'avarizia sia un vuoto interiore mai colmabile dal possesso."
+                    },
+                    quizB: {
+                        question: "Perché tra le tre fiere la Lupa è considerata da Dante la più rovinosa e sociale tra i vizi?",
+                        options: [
+                            { text: "Perché attacca le persone soltanto durante le ore notturne.", correct: false },
+                            { text: "Perché la cupidigia e l'avidità insaziabile corrompono le istituzioni, la Chiesa e i rapporti umani.", correct: true },
+                            { text: "Perché è l'unica fiera dotata di forza fisica superiore al Leone.", correct: false },
+                            { text: "Perché rappresenta l'ignoranza e l'analfabetismo dei popoli medievali.", correct: false }
+                        ],
+                        explanation: "La cupidigia (avarizia) per Dante è la radice della corruzione politica e morale della società."
+                    }
+                },
+
+                phase3: {
+                    question: "Analizza la dinamica della Lupa e il concetto di 'insaziabilità': perché il desiderio egoistico di possesso crea una gabbia psicologica che impedisce l'evoluzione personale e la convivenza civile?",
+                    keywords: ["cupidigia", "insaziabile", "desiderio", "egoismo", "possesso", "vuoto", "societa", "corruzione", "limite"],
+                    minWords: 15,
+                    hints: "Rifletti su come l'avidità di beni materiali crei un bisogno infinito che consuma chi ne è prigioniero."
+                }
+            },
+            {
+                id: 4,
+                title: "L'Apparizione di Virgilio: La Guida e la Ragione",
+                subtitle: "Inferno, Canto I • Versi 61-90",
+                badgeName: "Discepolo del Poeta",
+                badgeDesc: "Ha riconosciuto la figura del maestro e della ragione come strumento di salvezza.",
+                svgType: "virgil",
+                
+                phase1: {
+                    tercets: [
+                        {
+                            lines: [
+                                { num: 62, text: "dinanzi a li occhi mi si fu offerto" },
+                                { num: 63, text: "chi per <span class='text-amber-400 underline decoration-amber-500/50 cursor-help' title='Lungo silenzio: la dimenticanza degli studi classici o il silenzio della ragione'>lungo silenzio parea fioco</span>." },
+                                { num: 64, text: "Quando vidi costui nel gran deserto," }
+                            ]
+                        },
+                        {
+                            lines: [
+                                { num: 65, text: "«Miserere di me», gridai a lui," },
+                                { num: 67, text: "Risposemi: «Non homo, homo già fui," },
+                                { num: 73, text: "poeta fui, e cantai di quel <span class='text-amber-400 underline decoration-amber-500/50 cursor-help' title='Giusto figliuol d Anchise: Enea, eroe della pietas'>giusto figliuol d’Anchise</span> che venne da Troia...»" }
+                            ]
+                        },
+                        {
+                            lines: [
+                                { num: 82, text: "«O de li altri poeti onore e lume..." },
+                                { num: 85, text: "Tu se' lo mio maestro e 'l mio autore...»" }
+                            ]
+                        }
+                    ],
+                    selects: [
+                        { id: "p4_s1", prefix: "Mentre Dante precipita verso il basso, gli appare l'ombra di ", options: ["Virgilio", "Omero", "Orazio"], correct: "Virgilio", suffix: ", il poeta mantovano autore dell'Eneide." },
+                        { id: "p4_s2", prefix: "Virgilio si presenta ricordando di aver cantato le imprese di ", options: ["Enea (figliuol d'Anchise)", "Cesare Augusto", "Romolo e Remo"], correct: "Enea (figliuol d'Anchise)", suffix: ", eroe troiano fondatore della stirpe romana." },
+                        { id: "p4_s3", prefix: "Dante lo riconosce commosso come suo ", options: ["maestro e autore", "rivale poetico", "giudice severo"], correct: "maestro e autore", suffix: " da cui ha appreso lo bello stile." }
+                    ],
+                    explanation: "Virgilio incarna la Ragione umana e la sapienza classica inviata per soccorrere Dante nello smarrimento."
+                },
+
+                phase2: {
+                    quizA: {
+                        question: "Cosa significa l'espressione allegorico-testuale 'chi per lungo silenzio parea fioco' (v. 63)?",
+                        options: [
+                            { text: "Che la voce di Virgilio era fioca perché spaventata dal ruggito del Leone.", correct: false },
+                            { text: "Che la voce della Ragione e della sapienza classica era rimasta a lungo inascoltata nel disordine morale.", correct: true },
+                            { text: "Che Virgilio soffriva di una malattia alle corde vocali al momento dell'apparizione.", correct: false },
+                            { text: "Che l'ombra del poeta si trovava troppo lontana per farsi udire distintamente.", correct: false }
+                        ],
+                        explanation: "Il 'lungo silenzio' simboleggia l'oblio della ragione e dei valori classici nel periodo di degrado morale."
+                    },
+                    quizB: {
+                        question: "Cosa rappresenta la figura di Virgilio sul piano allegorico ed entro quali limiti opera nel viaggio dantesco?",
+                        options: [
+                            { text: "Rappresenta la Fede rivelata ed è in grado di condurre Dante fino all'Empireo.", correct: false },
+                            { text: "Rappresenta la Ragione Umana e la Filosofia naturale; guida l'uomo fino alle soglie della Grazia.", correct: true },
+                            { text: "Rappresenta il solo potere imperiale privo di qualsiasi funzione etica.", correct: false },
+                            { text: "Rappresenta l'astronomia antica e le scienze matematiche.", correct: false }
+                        ],
+                        explanation: "Virgilio simboleggia la guida della Ragione, necessaria per prendere consapevolezza del male prima della Grazia."
+                    }
+                },
+
+                phase3: {
+                    question: "Dal punto di vista delle Scienze Umane, qual è il valore pedagogico della relazione tra Virgilio (maestro) e Dante (discepolo)? Perché di fronte alla crisi è indispensabile affidarsi a una guida?",
+                    keywords: ["maestro", "guida", "relazione", "fiducia", "educazione", "crescita", "sostegno", "modello", "consapevolezza"],
+                    minWords: 15,
+                    hints: "Sottolinea l'importanza del rispecchiamento, della fiducia pedagogica e del ruolo del maestro nello strutturare la consapevolezza."
+                }
+            },
+            {
+                id: 5,
+                title: "La Profezia del Veltro e l'Inizio del Viaggio",
+                subtitle: "Inferno, Canto I • Versi 91-136",
+                badgeName: "Pronto al Viaggio",
+                badgeDesc: "Ha accettato la necessità dell 'altro viaggio' di purificazione attraverso i regni dell Oltretomba.",
+                svgType: "gateway",
+                
+                phase1: {
+                    tercets: [
+                        {
+                            lines: [
+                                { num: 91, text: "«A te convien tenere <span class='text-amber-400 underline decoration-amber-500/50 cursor-help' title='Altro viaggio: il percorso di discesa nell Inferno e ascesa al Purgatorio'>altro viaggio</span>»," },
+                                { num: 92, text: "rispose, poi che lagrimar mi vide..." }
+                            ]
+                        },
+                        {
+                            lines: [
+                                { num: 101, text: "Molti son li animali a cui s’ammoglia," },
+                                { num: 102, text: "e più saranno ancora, infin che ’l <span class='text-amber-400 underline decoration-amber-500/50 cursor-help' title='Veltro: allegoria del riformatore e cane da caccia che sconfiggera la Lupa'>veltro</span> verrà, che la farà morir con doglia." },
+                                { num: 103, text: "Questi non ciberà terra né peltro," },
+                                { num: 104, text: "ma sapienza, amore e virtute..." }
+                            ]
+                        },
+                        {
+                            lines: [
+                                { num: 112, text: "Ond’ io per lo tuo me’ penso e discerno" },
+                                { num: 113, text: "che tu mi segui, e io sarò tua guida..." }
+                            ]
+                        }
+                    ],
+                    selects: [
+                        { id: "p5_s1", prefix: "Virgilio avverte Dante che per salvarsi occorre intraprendere ", options: ["un altro viaggio", "una battaglia armata", "un ritorno a Firenze"], correct: "un altro viaggio", suffix: " attraverso i regni dell'Oltretomba." },
+                        { id: "p5_s2", prefix: "Profetizza poi l'arrivo del Veltro, cane da caccia che ciberà non terra né denaro (peltro), ma ", options: ["sapienza, amore e virtute", "forza, gloria e potere", "oro, terre e titoli"], correct: "sapienza, amore e virtute", suffix: "." },
+                        { id: "p5_s3", prefix: "Dante accetta di seguire Virgilio come guida nell'Inferno per iniziare il cammino di ", options: ["rigenerazione e salvezza", "fuga dalle responsabilita", "vendetta politica"], correct: "rigenerazione e salvezza", suffix: "." }
+                    ],
+                    explanation: "Il Veltro è il riformatore profetizzato che sconfiggerà la cupidigia. L'altro viaggio è la conoscenza del male."
+                },
+
+                phase2: {
+                    quizA: {
+                        question: "Di che cosa si nutrirà il 'Veltro' secondo le parole esplicite del testo di Virgilio (vv. 103-104)?",
+                        options: [
+                            { text: "Di ricchezze materiali e vasti domini territoriali.", correct: false },
+                            { text: "Di sapienza, amore e virtute, ricollegandosi alle tre persone della Trinità.", correct: true },
+                            { text: "Di glorie militari e tributi versati dai popoli sottomessi.", correct: false },
+                            { text: "Di carne di fiere e vino prelibato nei banchetti.", correct: false },
+                        ],
+                        explanation: "Il cibo del Veltro indica la sua natura spirituale e morale opposta alla cupidigia."
+                    },
+                    quizB: {
+                        question: "Perché secondo Virgilio è necessario compiere 'altro viaggio' (attraverso la conoscenza del peccato) anziché salire direttamente il colle?",
+                        options: [
+                            { text: "Perché non si può superare il male senza prima averne riconosciuto le radici profonde.", correct: true },
+                            { text: "Perché il sentiero del colle era interrotto da una frana imprevista.", correct: false },
+                            { text: "Perché Dante doveva prima salutare i suoi amici nell'Oltretomba.", correct: false },
+                            { text: "Perché Virgilio voleva mostrare a Dante la propria dimora nel Limbo.", correct: false }
+                        ],
+                        explanation: "La presa di coscienza del peccato (Inferno) è la precondizione per la vera purificazione."
+                    }
+                },
+
+                phase3: {
+                    question: "Perché la conoscenza profonda delle proprie fragilità e del male (la discesa all'Inferno) è una tappa indispensabile prima di qualsiasi trasformazione e maturazione personale?",
+                    keywords: ["consapevolezza", "trasformazione", "male", "crescita", "autocritica", "cambiamento", "maturazione", "strada", "errore"],
+                    minWords: 15,
+                    hints: "Considera che la maturazione psicologica richiede di affrontare e non rimuovere le proprie ombre e i propri difetti."
+                }
+            }
+        ];
+
+        /* ==========================================================================
+           CANTO I GLOSSARY DATA (STRICTLY CANTO I)
+           ========================================================================== */
+        const encyclopediaData = {
+            concetti: [
+                { title: "Selva Oscura (v. 2)", desc: "Allegoria dello stato di traviamento morale, politico e spirituale dell'uomo privo della guida della ragione e della grazia divina." },
+                { title: "Sonno dell'Anima (v. 11)", desc: "L'assopimento della coscienza e della vigilanza etica che precede lo scivolamento inconsapevole nel peccato." },
+                { title: "Colle Illuminato (vv. 13-18)", desc: "Simbolo della felicità terrena e della vita virtuosa. I suoi versi sono rischiarati dal Sole (pianeta)." },
+                { title: "La Paura (vv. 15-21)", desc: "L'emozione paralizzante provata dall'uomo di fronte al disordine morale e all'impossibilità di superare gli ostacoli da solo." },
+                { title: "La Ruinosa Discesa (v. 61)", desc: "Il regresso psicologico ed etico verso la selva che avviene quando l'uomo tenta di superare le proprie debolezze senza una guida." },
+                { title: "Allegoria", desc: "Procedimento mediante il quale un concetto morale o filosofico viene espresso attraverso un'immagine concreta." },
+                { title: "Il Veltro (vv. 101-111)", desc: "Cane da caccia profetizzato da Virgilio. Allegoria di un riformatore etico-politico destinato a scacciare la Lupa." }
+            ],
+            fiere: [
+                { title: "La Lonza (vv. 31-40)", desc: "Fiera agile dal pelo maculato. Allegoria della Lussuria (o dell'Invidia), vizio che attrae con le apparenze." },
+                { title: "Il Leone (vv. 44-48)", desc: "Fiera impaurante con la testa alta. Allegoria della Superbia e della violenza prevaricatrice." },
+                { title: "La Lupa (vv. 49-60)", desc: "Fiera magra e insaziabile. Allegoria dell'Avarizia e della Cupidigia di beni materiali, la radice della corruzione sociale." }
+            ],
+            personaggi: [
+                { title: "Dante Alighieri", desc: "Protagonista del viaggio. Rappresenta sia il poeta fiorentino, sia l'Umanità smarrita in cerca di orientamento etico." },
+                { title: "Virgilio (vv. 67-87)", desc: "Poeta latino dell'Eneide. Allegoria della Ragione Umana, della Filosofia antica e della guida pedagogica." },
+                { title: "Enea (v. 74)", desc: "Il 'giusto figliuol d'Anchise' evocato da Virgilio. Modello di pietas, senso del dovere e figura fondativa." }
+            ]
+        };
+
+        /* ==========================================================================
+           STATE MANAGEMENT
+           ========================================================================== */
+        let state = {
+            currentChapterIndex: 0,
+            currentStage: 1, // 1, 2, 3
+            xp: 0,
+            unlockedChapters: [1],
+            badges: [],
+            phase1Answers: {},
+            phase2Answers: { qA: null, qB: null },
+            audioEnabled: true
+        };
+
+        let audioCtx = null;
+
+        /* ==========================================================================
+           INITIALIZATION & LOCALSTORAGE
+           ========================================================================== */
+        window.addEventListener('DOMContentLoaded', () => {
+            loadState();
+            renderChapter();
+            renderBadges();
+            updateUIState();
+        });
+
+        function loadState() {
+            const saved = localStorage.getItem('dante_selva_canto1_state');
+            if (saved) {
+                try {
+                    const parsed = JSON.parse(saved);
+                    state.xp = parsed.xp || 0;
+                    state.unlockedChapters = parsed.unlockedChapters || [1];
+                    state.badges = parsed.badges || [];
+                } catch(e) {
+                    console.error("Errore stato", e);
+                }
+            }
+        }
+
+        function saveState() {
+            localStorage.setItem('dante_selva_canto1_state', JSON.stringify({
+                xp: state.xp,
+                unlockedChapters: state.unlockedChapters,
+                badges: state.badges
+            }));
+        }
+
+        /* ==========================================================================
+           WEB AUDIO API SOUND EFFECTS
+           ========================================================================== */
+        function initAudio() {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (AudioContext) audioCtx = new AudioContext();
+            }
+        }
+
+        function toggleAudio() {
+            state.audioEnabled = !state.audioEnabled;
+            const btn = document.getElementById('audio-btn');
+            btn.className = state.audioEnabled 
+                ? "p-2 bg-slate-800 hover:bg-slate-700 text-amber-400 border border-amber-800/50 rounded-xl transition-all"
+                : "p-2 bg-slate-800 hover:bg-slate-700 text-slate-500 border border-slate-700 rounded-xl transition-all";
+        }
+
+        function playSound(type) {
+            if (!state.audioEnabled) return;
+            initAudio();
+            if (!audioCtx) return;
+
+            try {
+                const now = audioCtx.currentTime;
+                if (type === 'correct') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.exponentialRampToValueAtTime(880, now + 0.25);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'wrong') {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.connect(gain);
+                    gain.connect(audioCtx.destination);
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.exponentialRampToValueAtTime(110, now + 0.25);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'badge') {
+                    [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.frequency.setValueAtTime(freq, now + idx * 0.08);
+                        g.gain.setValueAtTime(0.08, now + idx * 0.08);
+                        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.08 + 0.3);
+                        o.start(now + idx * 0.08);
+                        o.stop(now + idx * 0.08 + 0.3);
+                    });
+                }
+            } catch(e){}
+        }
+
+        /* ==========================================================================
+           RENDER CHAPTER CONTENT
+           ========================================================================== */
+        function renderChapter() {
+            const ch = chaptersData[state.currentChapterIndex];
+
+            document.getElementById('chapter-tag').innerText = `Capitolo ${ch.id} di 5`;
+            document.getElementById('chapter-title').innerText = ch.title;
+            document.getElementById('chapter-subtitle').innerText = ch.subtitle;
+            document.getElementById('chapter-badge-name').innerText = ch.badgeName;
+
+            document.getElementById('svg-illustration').innerHTML = getChapterSVG(ch.svgType);
+
+            // Reset stage states
+            state.currentStage = 1;
+            state.phase1Answers = {};
+            state.phase2Answers = { qA: null, qB: null };
+
+            renderPhase1(ch.phase1);
+            renderPhase2(ch.phase2);
+            renderPhase3(ch.phase3);
+
+            advanceToStage(1);
+            updateProgressBar();
+        }
+
+        /* ==========================================================================
+           SVG ILLUSTRATION GENERATOR
+           ========================================================================== */
+        function getChapterSVG(type) {
+            switch(type) {
+                case 'forest':
+                    return `<svg class="w-full h-full text-amber-500/80" viewBox="0 0 400 120" fill="none" stroke="currentColor">
+                        <path d="M40 110 L60 40 L80 110 M60 55 L40 80 M60 65 L80 90" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M110 110 L140 20 L170 110 M140 40 L110 75 M140 60 L170 85" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M220 110 L250 30 L280 110 M250 50 L220 80 M250 65 L280 90" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M310 110 L330 45 L350 110" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="200" cy="30" r="12" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="2,2"/>
+                    </svg>`;
+                case 'hill':
+                    return `<svg class="w-full h-full text-amber-500/80" viewBox="0 0 400 120" fill="none" stroke="currentColor">
+                        <circle cx="280" cy="35" r="20" fill="#f59e0b" fill-opacity="0.25" stroke="#f59e0b" stroke-width="2"/>
+                        <path d="M280 5 L280 0 M280 65 L280 70 M245 35 L240 35 M320 35 L315 35" stroke="#f59e0b" stroke-width="1.5"/>
+                        <path d="M20 110 Q 150 100, 260 40 Q 320 80, 380 110" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>`;
+                case 'beasts':
+                    return `<svg class="w-full h-full text-rose-500/80" viewBox="0 0 400 120" fill="none" stroke="currentColor">
+                        <path d="M70 100 C80 60, 120 60, 130 100 M100 70 L100 55" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M180 100 C190 40, 240 40, 250 100 M215 50 Q230 35, 245 50" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M290 100 C300 70, 340 70, 350 100" stroke-width="2" stroke-dasharray="4,2"/>
+                        <circle cx="215" cy="60" r="2.5" fill="#9f1239"/>
+                        <circle cx="100" cy="70" r="2.5" fill="#9f1239"/>
+                    </svg>`;
+                case 'virgil':
+                    return `<svg class="w-full h-full text-amber-400/80" viewBox="0 0 400 120" fill="none" stroke="currentColor">
+                        <path d="M200 25 C190 25, 185 35, 185 45 C185 60, 215 60, 215 45 C215 35, 210 25, 200 25 Z" stroke-width="2"/>
+                        <path d="M175 110 L185 60 L215 60 L225 110 Z" stroke-width="2"/>
+                        <path d="M190 23 Q200 16, 210 23" stroke="#f59e0b" stroke-width="2"/>
+                    </svg>`;
+                case 'gateway':
+                    return `<svg class="w-full h-full text-amber-500/80" viewBox="0 0 400 120" fill="none" stroke="currentColor">
+                        <rect x="150" y="20" width="100" height="90" rx="50" stroke-width="2.5"/>
+                        <path d="M150 110 L250 110" stroke-width="3"/>
+                        <path d="M200 20 L200 110" stroke-width="1" stroke-dasharray="3,3"/>
+                    </svg>`;
+                default: return '';
+            }
+        }
+
+        /* ==========================================================================
+           PHASE 1: SIDE-BY-SIDE PARAPHRASE LOGIC
+           ========================================================================== */
+        function renderPhase1(phase1Data) {
+            // Left column: Tercets
+            const tercetsContainer = document.getElementById('original-tercets-container');
+            tercetsContainer.innerHTML = '';
+
+            phase1Data.tercets.forEach(t => {
+                const tDiv = document.createElement('div');
+                tDiv.className = 'border-l-2 border-amber-600/60 pl-3 py-1 bg-amber-950/20 rounded-r-lg space-y-1';
+                t.lines.forEach(l => {
+                    tDiv.innerHTML += `<div><span class="text-[10px] text-slate-500 font-mono mr-2">${l.num}</span>${l.text}</div>`;
+                });
+                tercetsContainer.appendChild(tDiv);
+            });
+
+            // Right column: Paraphrase selects
+            const selectsContainer = document.getElementById('paraphrase-selects-container');
+            selectsContainer.innerHTML = '';
+
+            const feedback = document.getElementById('phase1-feedback');
+            feedback.className = 'hidden p-4 rounded-xl border text-xs md:text-sm';
+            document.getElementById('phase1-next-btn').disabled = true;
+
+            phase1Data.selects.forEach((item, idx) => {
+                const wrapper = document.createElement('div');
+                wrapper.className = 'bg-slate-950/80 p-3 rounded-xl border border-slate-800 space-y-1.5';
+
+                let selectHtml = `<select id="${item.id}" onchange="registerPhase1Answer('${item.id}')" class="bg-slate-900 border border-amber-700/60 text-amber-300 font-semibold rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-amber-400 my-1">
+                    <option value="">-- seleziona opzione --</option>`;
+                
+                // Shuffle options
+                const shuffled = [...item.options].sort(() => Math.random() - 0.5);
+                shuffled.forEach(opt => {
+                    selectHtml += `<option value="${opt}">${opt}</option>`;
+                });
+                selectHtml += `</select>`;
+
+                wrapper.innerHTML = `<span>${item.prefix}</span> ${selectHtml} <span>${item.suffix}</span>`;
+                selectsContainer.appendChild(wrapper);
+            });
+        }
+
+        function registerPhase1Answer(selectId) {
+            const val = document.getElementById(selectId).value;
+            state.phase1Answers[selectId] = val;
+        }
+
+        function checkPhase1() {
+            const p1Data = chaptersData[state.currentChapterIndex].phase1;
+            let correctCount = 0;
+
+            p1Data.selects.forEach(s => {
+                const userVal = state.phase1Answers[s.id];
+                const selectEl = document.getElementById(s.id);
+                if (userVal === s.correct) {
+                    correctCount++;
+                    selectEl.className = 'bg-emerald-950 border border-emerald-500 text-emerald-300 font-bold rounded-lg px-2.5 py-1 text-xs my-1';
+                } else {
+                    selectEl.className = 'bg-rose-950 border border-rose-500 text-rose-300 font-bold rounded-lg px-2.5 py-1 text-xs my-1';
+                }
+            });
+
+            const feedback = document.getElementById('phase1-feedback');
+            feedback.classList.remove('hidden');
+
+            if (correctCount === p1Data.selects.length) {
+                feedback.className = 'p-4 rounded-xl border border-emerald-600/60 bg-emerald-950/40 text-emerald-200 text-xs md:text-sm space-y-1';
+                feedback.innerHTML = `
+                    <div class="font-bold font-dante text-emerald-400 flex items-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Parafrasi Ricostruita con Successo! (+30 XP)
+                    </div>
+                    <p class="opacity-90 leading-relaxed">${p1Data.explanation}</p>
+                `;
+                addXP(30);
+                playSound('correct');
+                document.getElementById('phase1-next-btn').disabled = false;
+            } else {
+                feedback.className = 'p-4 rounded-xl border border-rose-600/60 bg-rose-950/40 text-rose-200 text-xs md:text-sm space-y-1';
+                feedback.innerHTML = `
+                    <div class="font-bold font-dante text-rose-400">Alcune selezioni non sono corrette (${correctCount}/${p1Data.selects.length})</div>
+                    <p class="opacity-90">Rileggi attentamente le terzine a sinistra e correggi i menu evidenziati in rosso.</p>
+                `;
+                playSound('wrong');
+            }
+        }
+
+        /* ==========================================================================
+           PHASE 2: DUAL QUIZ LOGIC
+           ========================================================================== */
+        function renderPhase2(phase2Data) {
+            // Render Quiz A (Textual)
+            document.getElementById('quiz-qa-text').innerText = phase2Data.quizA.question;
+            const qaContainer = document.getElementById('quiz-qa-options');
+            qaContainer.innerHTML = '';
+            document.getElementById('quiz-qa-feedback').classList.add('hidden');
+
+            phase2Data.quizA.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left p-3 rounded-xl border border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-200 transition-all text-xs md:text-sm flex items-start gap-2.5';
+                btn.innerHTML = `
+                    <span class="w-5 h-5 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center text-[11px] font-bold text-amber-400 shrink-0 mt-0.5">${String.fromCharCode(65 + idx)}</span>
+                    <span class="leading-relaxed">${opt.text}</span>
+                `;
+                btn.onclick = () => selectQuizOption('qA', idx, opt.correct, phase2Data.quizA.explanation, btn);
+                qaContainer.appendChild(btn);
+            });
+
+            // Render Quiz B (Allegorical)
+            document.getElementById('quiz-qb-text').innerText = phase2Data.quizB.question;
+            const qbContainer = document.getElementById('quiz-qb-options');
+            qbContainer.innerHTML = '';
+            document.getElementById('quiz-qb-feedback').classList.add('hidden');
+
+            phase2Data.quizB.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'w-full text-left p-3 rounded-xl border border-slate-800 bg-slate-900 hover:bg-slate-800 text-slate-200 transition-all text-xs md:text-sm flex items-start gap-2.5';
+                btn.innerHTML = `
+                    <span class="w-5 h-5 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center text-[11px] font-bold text-rose-400 shrink-0 mt-0.5">${String.fromCharCode(65 + idx)}</span>
+                    <span class="leading-relaxed">${opt.text}</span>
+                `;
+                btn.onclick = () => selectQuizOption('qB', idx, opt.correct, phase2Data.quizB.explanation, btn);
+                qbContainer.appendChild(btn);
+            });
+
+            document.getElementById('phase2-next-btn').disabled = true;
+        }
+
+        function selectQuizOption(quizType, index, isCorrect, explanation, btnElement) {
+            const containerId = quizType === 'qA' ? 'quiz-qa-options' : 'quiz-qb-options';
+            const feedbackId = quizType === 'qA' ? 'quiz-qa-feedback' : 'quiz-qb-feedback';
+
+            const allBtns = document.getElementById(containerId).children;
+            for (let b of allBtns) {
+                b.disabled = true;
+                b.classList.add('opacity-60', 'cursor-not-allowed');
+            }
+
+            const feedback = document.getElementById(feedbackId);
+            feedback.classList.remove('hidden');
+
+            if (isCorrect) {
+                btnElement.classList.remove('opacity-60', 'bg-slate-900');
+                btnElement.classList.add('bg-emerald-950/80', 'border-emerald-500', 'text-emerald-200');
+                feedback.className = 'p-3 rounded-xl border border-emerald-600/60 bg-emerald-950/40 text-emerald-200 text-xs space-y-1';
+                feedback.innerHTML = `<div class="font-bold text-emerald-400 font-dante">Corretto! (+20 XP)</div><div>${explanation}</div>`;
+                state.phase2Answers[quizType] = true;
+                addXP(20);
+                playSound('correct');
+            } else {
+                btnElement.classList.remove('opacity-60', 'bg-slate-900');
+                btnElement.classList.add('bg-rose-950/80', 'border-rose-500', 'text-rose-200');
+                feedback.className = 'p-3 rounded-xl border border-rose-600/60 bg-rose-950/40 text-rose-200 text-xs space-y-1';
+                feedback.innerHTML = `<div class="font-bold text-rose-400 font-dante">Opzione Non Corretta</div><div>${explanation}</div>`;
+                state.phase2Answers[quizType] = false;
+                playSound('wrong');
+            }
+
+            // Check if both questions answered correctly to unlock next phase
+            if (state.phase2Answers.qA === true && state.phase2Answers.qB === true) {
+                document.getElementById('phase2-next-btn').disabled = false;
+            }
+        }
+
+        /* ==========================================================================
+           PHASE 3: OPEN CRITICAL PROMPT EVALUATION
+           ========================================================================== */
+        function renderPhase3(phase3Data) {
+            document.getElementById('open-prompt-question').innerText = phase3Data.question;
+            document.getElementById('min-words-label').innerText = phase3Data.minWords;
+            document.getElementById('open-answer-text').value = '';
+            document.getElementById('word-counter-display').innerText = 'Parole: 0';
+
+            const feedback = document.getElementById('open-eval-feedback');
+            feedback.classList.add('hidden');
+            document.getElementById('chapter-finish-btn').disabled = true;
+
+            const textarea = document.getElementById('open-answer-text');
+            textarea.oninput = () => {
+                const words = textarea.value.trim().split(/\s+/).filter(w => w.length > 0);
+                document.getElementById('word-counter-display').innerText = `Parole: ${words.length}`;
+            };
+        }
+
+        function evaluateOpenAnswer() {
+            const p3Data = chaptersData[state.currentChapterIndex].phase3;
+            const text = document.getElementById('open-answer-text').value.trim().toLowerCase();
+            const words = text.split(/\s+/).filter(w => w.length > 0);
+            const wordCount = words.length;
+
+            const feedback = document.getElementById('open-eval-feedback');
+            feedback.classList.remove('hidden');
+
+            let matched = [];
+            p3Data.keywords.forEach(kw => {
+                if (text.includes(kw.toLowerCase())) matched.push(kw);
+            });
+
+            const isLongEnough = wordCount >= p3Data.minWords;
+            const kwScore = matched.length;
+
+            if (isLongEnough && kwScore >= 3) {
+                feedback.className = 'p-4 rounded-xl border border-emerald-600/60 bg-emerald-950/40 text-emerald-200 text-xs md:text-sm space-y-1.5';
+                feedback.innerHTML = `
+                    <div class="font-bold font-dante text-emerald-400 flex items-center gap-2">
+                        <span>Eccellente Argomentazione Critica! (+40 XP)</span>
+                    </div>
+                    <p class="leading-relaxed">Hai integrato efficacemente i concetti analitici chiave (${matched.join(', ')}). La tua risposta mostra un'ottima comprensione per le Scienze Umane.</p>
+                `;
+                addXP(40);
+                playSound('correct');
+                document.getElementById('chapter-finish-btn').disabled = false;
+            } else if (isLongEnough || kwScore >= 2) {
+                feedback.className = 'p-4 rounded-xl border border-amber-600/60 bg-amber-950/40 text-amber-200 text-xs md:text-sm space-y-1.5';
+                feedback.innerHTML = `
+                    <div class="font-bold font-dante text-amber-400">Analisi Buona / Parziale (+20 XP)</div>
+                    <p class="leading-relaxed">La riflessione è valida. Suggerimento guida per arricchirla: ${p3Data.hints}</p>
+                `;
+                addXP(20);
+                playSound('correct');
+                document.getElementById('chapter-finish-btn').disabled = false;
+            } else {
+                feedback.className = 'p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-300 text-xs md:text-sm space-y-1.5';
+                feedback.innerHTML = `
+                    <div class="font-bold font-dante text-amber-400">Riflessione da Ampliare</div>
+                    <p class="leading-relaxed">La risposta appare sintetica. Prova a svilupparla tenendo conto di questo suggerimento: ${p3Data.hints}</p>
+                    <button onclick="allowProceedAnyway()" class="mt-1 text-xs text-amber-400 underline hover:text-amber-300 block">Completa comunque il capitolo</button>
+                `;
+                playSound('wrong');
+            }
+        }
+
+        function allowProceedAnyway() {
+            document.getElementById('chapter-finish-btn').disabled = false;
+            addXP(10);
+        }
+
+        /* ==========================================================================
+           STAGE STEPPER NAVIGATION
+           ========================================================================== */
+        function advanceToStage(stageNum) {
+            state.currentStage = stageNum;
+
+            [1, 2, 3].forEach(num => {
+                const content = document.getElementById(`stage-${num}`);
+                const btn = document.getElementById(`step-btn-${num}`);
+
+                if (num === stageNum) {
+                    content.classList.remove('hidden');
+                    btn.className = 'step-tab font-semibold text-xs md:text-sm px-4 py-2 rounded-xl transition-all flex items-center gap-2 bg-amber-600 text-slate-950 shadow-md font-dante';
+                } else {
+                    content.classList.add('hidden');
+                    btn.className = 'step-tab font-semibold text-xs md:text-sm px-4 py-2 rounded-xl opacity-60 flex items-center gap-2 bg-slate-800 text-slate-300 font-dante';
+                }
+            });
+        }
+
+        function completeChapter() {
+            const currentCh = chaptersData[state.currentChapterIndex];
+
+            if (!state.badges.includes(currentCh.badgeName)) {
+                state.badges.push(currentCh.badgeName);
+                playSound('badge');
+            }
+
+            const nextChId = currentCh.id + 1;
+            if (nextChId <= chaptersData.length && !state.unlockedChapters.includes(nextChId)) {
+                state.unlockedChapters.push(nextChId);
+            }
+
+            saveState();
+            renderBadges();
+
+            if (state.currentChapterIndex < chaptersData.length - 1) {
+                state.currentChapterIndex++;
+                renderChapter();
+            } else {
+                showCompletionMessage();
+            }
+        }
+
+        function showCompletionMessage() {
+            const container = document.getElementById('visual-container');
+            container.innerHTML = `
+                <div class="text-center p-6 space-y-3">
+                    <div class="w-14 h-14 bg-amber-500/20 text-amber-400 rounded-full flex items-center justify-center mx-auto border border-amber-500/50">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold font-dante text-amber-300">Percorso sul Canto I Completato!</h3>
+                    <p class="text-xs md:text-sm text-slate-300 max-w-lg mx-auto">Hai dimostrato una profonda comprensione delle allegorie, del valore della guida e della struttura morale del Canto I dantesco.</p>
+                </div>
+            `;
+        }
+
+        /* ==========================================================================
+           XP & PROGRESS BAR
+           ========================================================================== */
+        function addXP(amount) {
+            state.xp += amount;
+            document.getElementById('xp-display').innerText = `${state.xp} XP`;
+
+            if (state.xp >= 300) document.getElementById('level-title').innerText = "Magister";
+            else if (state.xp >= 150) document.getElementById('level-title').innerText = "Discepolo";
+            else document.getElementById('level-title').innerText = "Viandante";
+
+            updateProgressBar();
+            saveState();
+        }
+
+        function updateProgressBar() {
+            const totalSteps = chaptersData.length * 3;
+            const completedSteps = (state.currentChapterIndex * 3) + (state.currentStage - 1);
+            const percentage = Math.round((completedSteps / totalSteps) * 100);
+            document.getElementById('progress-bar').style.width = `${percentage}%`;
+        }
+
+        function renderBadges() {
+            const grid = document.getElementById('badges-grid');
+            grid.innerHTML = '';
+
+            chaptersData.forEach(ch => {
+                const isUnlocked = state.badges.includes(ch.badgeName);
+                const badgeEl = document.createElement('div');
+                badgeEl.className = `p-3 rounded-xl border text-center transition-all flex flex-col items-center justify-center ${
+                    isUnlocked 
+                    ? 'bg-amber-950/40 border-amber-500/60 text-amber-200 gold-glow' 
+                    : 'bg-slate-950/40 border-slate-800 text-slate-600 opacity-50'
+                }`;
+                badgeEl.innerHTML = `
+                    <div class="w-7 h-7 rounded-full ${isUnlocked ? 'bg-amber-500/20 text-amber-400' : 'bg-slate-800 text-slate-600'} flex items-center justify-center mb-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                    </div>
+                    <div class="text-[11px] font-bold font-dante leading-tight">${ch.badgeName}</div>
+                    <div class="text-[9px] opacity-75 mt-0.5">Capitolo ${ch.id}</div>
+                `;
+                grid.appendChild(badgeEl);
+            });
+        }
+
+        /* ==========================================================================
+           MODALS (MAP & ENCYCLOPEDIA)
+           ========================================================================== */
+        function toggleMapModal() {
+            const modal = document.getElementById('map-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                renderMapChapters();
+            }
+        }
+
+        function renderMapChapters() {
+            const list = document.getElementById('map-chapters-list');
+            list.innerHTML = '';
+
+            chaptersData.forEach((ch, idx) => {
+                const isUnlocked = state.unlockedChapters.includes(ch.id);
+                const item = document.createElement('div');
+                item.className = `p-3 rounded-xl border flex items-center justify-between ${
+                    isUnlocked ? 'bg-slate-800/90 border-amber-800/60 text-slate-200' : 'bg-slate-950/60 border-slate-800 text-slate-500 opacity-60'
+                }`;
+                item.innerHTML = `
+                    <div class="flex items-center gap-3">
+                        <span class="w-6 h-6 rounded-full ${isUnlocked ? 'bg-amber-600 text-slate-950 font-bold' : 'bg-slate-800 text-slate-600'} flex items-center justify-center text-xs font-dante">${ch.id}</span>
+                        <div>
+                            <div class="text-xs font-bold font-dante text-amber-200">${ch.title}</div>
+                            <div class="text-[10px] text-slate-400">${ch.subtitle}</div>
+                        </div>
+                    </div>
+                    ${isUnlocked ? `<button onclick="jumpToChapter(${idx})" class="px-3 py-1 bg-amber-600 hover:bg-amber-500 text-slate-950 text-xs font-bold rounded-lg transition-colors">Vai</button>` : `<span class="text-xs">Bloccato</span>`}
+                `;
+                list.appendChild(item);
+            });
+        }
+
+        function jumpToChapter(index) {
+            state.currentChapterIndex = index;
+            toggleMapModal();
+            renderChapter();
+        }
+
+        function unlockAllChapters() {
+            const code = document.getElementById('teacher-passcode').value;
+            if (code === 'dante2026') {
+                state.unlockedChapters = [1, 2, 3, 4, 5];
+                saveState();
+                renderMapChapters();
+                alert("Tutti i capitoli sono stati sbloccati per il docente!");
+            } else {
+                alert("Codice docente errato. Prova con: dante2026");
+            }
+        }
+
+        function toggleEncyclopedia() {
+            const modal = document.getElementById('encyclopedia-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                switchEncTab('concetti');
+            }
+        }
+
+        function switchEncTab(category) {
+            ['concetti', 'fiere', 'personaggi'].forEach(cat => {
+                const tabBtn = document.getElementById(`enc-tab-${cat}`);
+                if (cat === category) {
+                    tabBtn.className = 'flex-1 py-2.5 px-3 text-center border-b-2 border-amber-500 text-amber-400 font-dante font-bold';
+                } else {
+                    tabBtn.className = 'flex-1 py-2.5 px-3 text-center border-b-2 border-transparent text-slate-400 font-dante hover:text-slate-200';
+                }
+            });
+
+            const content = document.getElementById('encyclopedia-content');
+            content.innerHTML = '';
+
+            encyclopediaData[category].forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'p-3.5 rounded-xl border border-slate-800 bg-slate-950/60 space-y-1';
+                card.innerHTML = `
+                    <h4 class="text-xs md:text-sm font-bold font-dante text-amber-300">${item.title}</h4>
+                    <p class="text-xs leading-relaxed text-slate-300">${item.desc}</p>
+                `;
+                content.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>
