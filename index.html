@@ -261,7 +261,7 @@
             <!-- FASE 3: RISPOSTA APERTA CRITICA CON VALUTAZIONE SEMANTICA -->
             <div id="stage-3" class="stage-content hidden space-y-5">
                 <div class="bg-slate-800/40 p-4 rounded-xl border border-slate-700/60">
-                    <h3 class="text-sm font-bold font-dante text-amber-400">Riflessione Critico-Pedagogica</h3>
+                    <h3 class="text-sm font-bold font-dante text-amber-400">Riflessione Critico-Pedagogica (Studio)</h3>
                     <p id="open-prompt-question" class="text-xs md:text-sm text-slate-200 mt-1 leading-relaxed font-medium"></p>
                 </div>
 
@@ -269,7 +269,7 @@
                     <label for="open-answer-text" class="block text-xs text-slate-400">
                         Argomenta la tua risposta (Richieste almeno <span id="min-words-label" class="text-amber-400 font-bold">15</span> parole con riferimenti ai concetti chiave):
                     </label>
-                    <textarea id="open-answer-text" rows="5" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-4 text-xs md:text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all" placeholder="Scrivi qui la tua riflessione analitica..."></textarea>
+                    <textarea id="open-answer-text" rows="5" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-4 text-xs md:text-sm text-slate-200 placeholder-slate-600 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all" placeholder="Scrivi qui la tua riflessione basata sullo studio..."></textarea>
                     <div class="flex justify-between text-[11px] text-slate-500">
                         <span id="word-counter-display">Parole: 0</span>
                         <span>Valutazione Semantica Automatizzata</span>
@@ -403,9 +403,9 @@
                         }
                     ],
                     selects: [
-                        { id: "p1_s1", prefix: "A trentacinque anni (metà della vita), mi ritrovai in uno stato di ", options: ["perdizione morale", "solitudine fisica", "povertà economica"], correct: "perdizione morale", suffix: " (selva oscura), poiché la via della virtù era smarrita." },
-                        { id: "p1_s2", prefix: "È un'esperienza talmente dolorosa che a ricordarla si rinnova la ", options: ["paura", "rabbia", "superbia"], correct: "paura", suffix: " e angoscia provata." },
-                        { id: "p1_s3", prefix: "Non so spiegare bene come vi sia entrato, poiché ero pieno di ", options: ["sonno della coscienza", "orgoglio intellettuale", "desiderio di avventura"], correct: "sonno della coscienza", suffix: " quando smarrii il vero cammino." }
+                        { id: "p1_s1", prefix: "A trentacinque anni (metà della vita), mi ritrovai in uno stato di ", options: ["smarrimento etico e spirituale", "esilio politico definitivo", "confusione onirica transitoria"], correct: "smarrimento etico e spirituale", suffix: " (selva oscura), poiché la via della virtù era smarrita." },
+                        { id: "p1_s2", prefix: "È un'esperienza talmente dolorosa che a ricordarla si rinnova la ", options: ["angoscia profonda", "nostalgia del bene perduto", "rabbia per l'ingiustizia subita"], correct: "angoscia profonda", suffix: " provata." },
+                        { id: "p1_s3", prefix: "Non so spiegare bene come vi sia entrato, poiché ero pieno di ", options: ["torpore della coscienza morale", "stanchezza per il lungo esilio", "superbia intellettuale e filosofica"], correct: "torpore della coscienza morale", suffix: " quando smarrii il vero cammino." }
                     ],
                     explanation: "Dante colloca l'esperienza nel 1300 a 35 anni. Il 'sonno' rappresenta l'assopimento della coscienza morale che precede lo smarrimento."
                 },
@@ -415,20 +415,20 @@
                     quizA: {
                         question: "Per quale motivo stilistico e concettuale Dante utilizza l'aggettivo 'nostra' invece di 'mia' al verso 1 ('Nel mezzo del cammin di nostra vita')?",
                         options: [
-                            { text: "Per indicare che il viaggio è compiuto in compagnia di Virgilio fin dal primo momento.", correct: false },
+                            { text: "Per includere idealmente tutti i poeti dello Stil Novo che condividevano la sua stessa visione morale.", correct: false },
                             { text: "Per attribuire alla propria esperienza individuale un valore universale riguardante tutta l'umanità.", correct: true },
-                            { text: "Per fare riferimento specifico alla sola comunità dei cittadini fiorentini.", correct: false },
-                            { text: "Per una semplice ragione di metrica e rima incatenata nella terzina.", correct: false }
+                            { text: "Come pluralis maiestatis, per conferire autorevolezza solenne e profetica al proprio racconto.", correct: false },
+                            { text: "Per indicare il duplice livello di lettura dell'opera: uno rivolto ai dotti e uno ai lettori comuni.", correct: false }
                         ],
                         explanation: "L'aggettivo 'nostra' trasforma la vicenda personale di Dante nell'esperienza universale dell'uomo (Homo Viator) in cerca di salvezza."
                     },
                     quizB: {
                         question: "Che cosa simboleggia allegoricamente la 'selva oscura' nel contesto del Canto I?",
                         options: [
-                            { text: "Un reale bosco intricato del Casentino dove Dante si perse durante un viaggio.", correct: false },
+                            { text: "L'intrico delle fazioni politiche fiorentine (Guelfi e Ghibellini) in cui il poeta si era invischiato.", correct: false },
                             { text: "Lo stato di errore, peccato e disordine morale ed esistenziale dell'individuo e della società.", correct: true },
-                            { text: "La nostalgia amara provata dal poeta dopo la condanna all'esilio.", correct: false },
-                            { text: "Il limite invalicabile della conoscenza scientifica umana dell'epoca.", correct: false }
+                            { text: "L'abisso infernale vero e proprio, situato fisicamente sotto la città di Gerusalemme.", correct: false },
+                            { text: "L'ignoranza delle masse medievali, in contrapposizione alla luce della filosofia tomistica.", correct: false }
                         ],
                         explanation: "La selva oscura incarna il buio del peccato e della perdita di orientamento etico."
                     }
@@ -436,10 +436,10 @@
 
                 // PHASE 3: OPEN CRITICAL PROMPT
                 phase3: {
-                    question: "Analizza il valore psicologico e morale del 'sonno dell'anima' (v. 11). In che modo l'assenza di vigilanza critica impedisce all'individuo di avvedersi dello smarrimento prima che sia troppo tardi?",
-                    keywords: ["sonno", "coscienza", "vigilanza", "smarrimento", "consapevolezza", "errore", "attenzione", "moralita", "scelta"],
-                    minWords: 15,
-                    hints: "Rifletti su come l'assopimento della consapevolezza e la pigrizia etica portino a scivolare nel male senza rendersene conto."
+                    question: "In quale anno, giorno e periodo dell'anno ha inizio il viaggio di Dante? Quali motivazioni simboliche, teologiche o biografiche spingono l'autore a scegliere proprio questa data?",
+                    keywords: ["1300", "giubileo", "bonifacio", "venerdì santo", "primavera", "aprile", "marzo", "trentacinque", "mezzo", "equinozio", "pasqua"],
+                    minWords: 20,
+                    hints: "Ricorda l'età di Dante ('mezzo del cammin'), l'istituzione religiosa dell'anno 1300 da parte del Papa e il periodo liturgico (Pasqua) in cui si svolge la discesa."
                 }
             },
             {
@@ -475,9 +475,9 @@
                         }
                     ],
                     selects: [
-                        { id: "p2_s1", prefix: "Giunto ai piedi di un colle, Dante alza lo sguardo e vede la sua cima illuminata dal ", options: ["Sole (pianeta)", "Fuoco sacro", "Luce lunare"], correct: "Sole (pianeta)", suffix: ", simbolo della Grazia e guida verso la retta via." },
-                        { id: "p2_s2", prefix: "Il cuore del poeta ritrova un poco di pace dopo la grande ", options: ["paura", "superbia", "rabbia"], correct: "paura", suffix: " provata durante la notte nella selva." },
-                        { id: "p2_s3", prefix: "Dante paragona il suo stato d'animo a quello di un ", options: ["naufrago scampato al mare", "soldato vincitore", "pellegrino stanco"], correct: "naufrago scampato al mare", suffix: " che si volge indietro a guardare l'acqua pericolosa." }
+                        { id: "p2_s1", prefix: "Giunto ai piedi di un colle, Dante alza lo sguardo e vede la sua cima illuminata dal ", options: ["Sole (simbolo della Grazia divina)", "bagliore del Paradiso Terrestre", "fuoco purificatore del Purgatorio"], correct: "Sole (simbolo della Grazia divina)", suffix: ", che guida l'uomo verso la retta via." },
+                        { id: "p2_s2", prefix: "Il cuore del poeta ritrova un poco di pace dopo la grande ", options: ["tribolazione angosciosa", "disperazione assoluta e dannazione", "tentazione diabolica della selva"], correct: "tribolazione angosciosa", suffix: " provata durante la notte nella selva." },
+                        { id: "p2_s3", prefix: "Dante paragona il suo stato d'animo a quello di un ", options: ["naufrago che guarda le acque perigliose", "pellegrino giunto finalmente alla meta", "esule cacciato dalla propria patria"], correct: "naufrago che guarda le acque perigliose", suffix: " dopo aver raggiunto a fatica la riva." }
                     ],
                     explanation: "La vista del colle e del sole riaccende la speranza, ma il tentativo di salita diretta fallirà per la mancanza di una guida."
                 },
@@ -486,30 +486,30 @@
                     quizA: {
                         question: "Cosa intende Dante con la perifrasi 'il pianeta / che mena dritto altrui per ogne calle' (vv. 17-18)?",
                         options: [
-                            { text: "La Luna, che illumina i passi dei viandanti notturni.", correct: false },
+                            { text: "Dio stesso, descritto metaforicamente come un corpo celeste che ruota attorno alla Terra.", correct: false },
                             { text: "Il Sole, che nell'astronomia tolemaica era considerato un pianeta.", correct: true },
-                            { text: "La stella Venere, simbolo dell'amore terreno.", correct: false },
-                            { text: "La stella Polare, punto di riferimento dei naviganti.", correct: false }
+                            { text: "L'intelligenza angelica motrice del cielo dell'Empireo, che regola i destini umani.", correct: false },
+                            { text: "L'astro di Venere, che nella dottrina cortese simboleggia l'amore che muove l'intelletto.", correct: false }
                         ],
-                        explanation: "Nel sistema tolemaico il Sole è un pianeta e simboleggia la Grazia divina che guida la ragione."
+                        explanation: "Nel sistema tolemaico il Sole è un pianeta e simboleggia la Grazia divina che illumina l'uomo."
                     },
                     quizB: {
                         question: "Quale valore allegorico assume il 'colle illuminato' ai piedi del quale giunge Dante?",
                         options: [
+                            { text: "Il traguardo della beatitudine eterna e della visione beatifica di Dio.", correct: false },
                             { text: "La felicità terrena e la vita virtuosa a cui l'uomo aspira.", correct: true },
-                            { text: "Il potere temporale dell'Impero germanico.", correct: false },
-                            { text: "La salvezza finale già raggiunta in Paradiso.", correct: false },
-                            { text: "L'orgoglio filosofico presuntuoso della ragione umana.", correct: false }
+                            { text: "La montagna del Purgatorio, che Dante dovrà scalare per purificarsi dai peccati.", correct: false },
+                            { text: "Il potere temporale e spirituale finalmente riuniti e pacificati sotto l'Impero.", correct: false }
                         ],
-                        explanation: "Il colle rappresenta l'altezza della virtù e della serenità terrena."
+                        explanation: "Il colle rappresenta l'altezza della virtù e della serenità terrena che Dante cerca di raggiungere fuggendo dalla selva."
                     }
                 },
 
                 phase3: {
-                    question: "Perché la sola visione della meta (il colle illuminato) non è sufficiente a Dante per salvarsi e uscire dalla crisi? Quale insegnamento psicologico si trae dall'impossibilità di una scorciatoia?",
-                    keywords: ["guida", "scorciatoia", "limiti", "presunzione", "consapevolezza", "difficolta", "percorso", "aiuto", "ostacoli"],
-                    minWords: 15,
-                    hints: "Considera che la sola volontà non basta quando le radici del male non sono state prima affrontate e comprese."
+                    question: "Fornisci una definizione precisa di 'allegoria', distinguendola possibilmente dal simbolo, e spiega perché questo strumento retorico è fondamentale per comprendere la Divina Commedia.",
+                    keywords: ["concetto", "astratto", "immagine", "concreta", "metafora", "prolungata", "nascosto", "morale", "didattico", "significato", "razionale"],
+                    minWords: 20,
+                    hints: "L'allegoria è spesso definita una metafora continuata. Ricorda di spiegare come in Dante nasconda sempre un significato astratto (morale o teologico) dietro l'immagine concreta."
                 }
             },
             {
@@ -544,41 +544,41 @@
                         }
                     ],
                     selects: [
-                        { id: "p3_s1", prefix: "All'inizio della salita compaiono tre fiera: la Lonza dal pelo maculato (simbolo di ", options: ["lussuria", "accidia", "gola"], correct: "lussuria", suffix: ") che agilmente sbarra il passo." },
-                        { id: "p3_s2", prefix: "Poi appare un Leone impaurante con testa alta (simbolo di ", options: ["superbia", "falsità", "vigliaccheria"], correct: "superbia", suffix: ") e rabbiosa fame." },
-                        { id: "p3_s3", prefix: "Infine la Lupa magra e insaziabile (simbolo di ", options: ["avarizia/cupidigia", "eresia", "violenza"], correct: "avarizia/cupidigia", suffix: ") spinge Dante a rovinare indietro verso la selva." }
+                        { id: "p3_s1", prefix: "All'inizio della salita compaiono tre fiera: la Lonza dal pelo maculato (simbolo di ", options: ["incontinenza e lussuria", "frode e tradimento", "vanità ed eresia"], correct: "incontinenza e lussuria", suffix: ") che agilmente sbarra il passo." },
+                        { id: "p3_s2", prefix: "Poi appare un Leone impaurante con testa alta (simbolo di ", options: ["superbia e violenza", "ira e furore politico", "invidia e maldicenza"], correct: "superbia e violenza", suffix: ") e rabbiosa fame." },
+                        { id: "p3_s3", prefix: "Infine la Lupa magra e insaziabile (simbolo di ", options: ["cupidigia e avidità insaziabile", "gola e sfrenatezza carnale", "ignavia e viltà morale"], correct: "cupidigia e avidità insaziabile", suffix: ") spinge Dante a rovinare indietro verso la selva." }
                     ],
                     explanation: "Le tre fiere incarnano le passioni e i vizi capitali che impediscono la salita diretta al colle."
                 },
 
                 phase2: {
                     quizA: {
-                        question: "Quale figura retorica e registro stilistico caratterizza la descrizione della Lupa ('che di tutte brame / parea carca ne la sua magrezza')?",
+                        question: "Quale figura retorica caratterizza la descrizione della Lupa ('che di tutte brame / parea carca ne la sua magrezza')?",
                         options: [
+                            { text: "Allegoria continuata, che contrappone la natura selvatica dell'animale alla civiltà urbana.", correct: false },
                             { text: "Antitesi tra la 'magrezza' fisica del corpo e la 'carica di brame' insaziabili dell'anima.", correct: true },
-                            { text: "Ossimoro comico pensato per alleggerire la drammaticità della scena.", correct: false },
-                            { text: "Litote ironica volta a ridimensionare il pericolo rappresentato dalla fiera.", correct: false },
-                            { text: "Anastrofe senza valore simbolico o morale.", correct: false }
+                            { text: "Chiasmo, che incrocia il concetto di avidità spirituale con quello di deperimento fisico.", correct: false },
+                            { text: "Sineddoche, in cui la magrezza del corpo indica l'intera corruzione morale del clero.", correct: false }
                         ],
-                        explanation: "L'antitesi evidenzia come l'avarizia sia un vuoto interiore mai colmabile dal possesso."
+                        explanation: "L'antitesi evidenzia come l'avidità sia un vuoto interiore paradossale, mai colmabile dal possesso."
                     },
                     quizB: {
-                        question: "Perché tra le tre fiere la Lupa è considerata da Dante la più rovinosa e sociale tra i vizi?",
+                        question: "Perché tra le tre fiere la Lupa è considerata da Dante la più rovinosa?",
                         options: [
-                            { text: "Perché attacca le persone soltanto durante le ore notturne.", correct: false },
+                            { text: "Perché rappresenta l'eresia, considerata nel Medioevo il peccato più grave contro la dottrina.", correct: false },
                             { text: "Perché la cupidigia e l'avidità insaziabile corrompono le istituzioni, la Chiesa e i rapporti umani.", correct: true },
-                            { text: "Perché è l'unica fiera dotata di forza fisica superiore al Leone.", correct: false },
-                            { text: "Perché rappresenta l'ignoranza e l'analfabetismo dei popoli medievali.", correct: false }
+                            { text: "Perché l'incontinenza dei sensi acceca l'intelletto in modo irreversibile, precludendo il pentimento.", correct: false },
+                            { text: "Perché simboleggia l'Impero decaduto che non riesce più a garantire la giustizia universale.", correct: false }
                         ],
-                        explanation: "La cupidigia (avarizia) per Dante è la radice della corruzione politica e morale della società."
+                        explanation: "La cupidigia (avarizia) per Dante è la vera radice della corruzione politica e morale dell'intera società contemporanea."
                     }
                 },
 
                 phase3: {
-                    question: "Analizza la dinamica della Lupa e il concetto di 'insaziabilità': perché il desiderio egoistico di possesso crea una gabbia psicologica che impedisce l'evoluzione personale e la convivenza civile?",
-                    keywords: ["cupidigia", "insaziabile", "desiderio", "egoismo", "possesso", "vuoto", "societa", "corruzione", "limite"],
-                    minWords: 15,
-                    hints: "Rifletti su come l'avidità di beni materiali crei un bisogno infinito che consuma chi ne è prigioniero."
+                    question: "Quali sono le varie interpretazioni allegoriche storicamente attribuite alle tre fiere (Lonza, Leone, Lupa)? Fai riferimento sia ai vizi capitali sia alle interpretazioni politico-storiche studiate in classe.",
+                    keywords: ["lussuria", "superbia", "avarizia", "cupidigia", "firenze", "francia", "impero", "papato", "chiesa", "roma", "invidia", "politica"],
+                    minWords: 20,
+                    hints: "Oltre all'interpretazione morale (lussuria, superbia, avarizia), ricorda a quali potenze politiche (città o istituzioni) i commentatori hanno spesso associato queste tre figure."
                 }
             },
             {
@@ -613,9 +613,9 @@
                         }
                     ],
                     selects: [
-                        { id: "p4_s1", prefix: "Mentre Dante precipita verso il basso, gli appare l'ombra di ", options: ["Virgilio", "Omero", "Orazio"], correct: "Virgilio", suffix: ", il poeta mantovano autore dell'Eneide." },
-                        { id: "p4_s2", prefix: "Virgilio si presenta ricordando di aver cantato le imprese di ", options: ["Enea (figliuol d'Anchise)", "Cesare Augusto", "Romolo e Remo"], correct: "Enea (figliuol d'Anchise)", suffix: ", eroe troiano fondatore della stirpe romana." },
-                        { id: "p4_s3", prefix: "Dante lo riconosce commosso come suo ", options: ["maestro e autore", "rivale poetico", "giudice severo"], correct: "maestro e autore", suffix: " da cui ha appreso lo bello stile." }
+                        { id: "p4_s1", prefix: "Mentre Dante precipita verso il basso, gli appare l'ombra di ", options: ["Virgilio, allegoria della Ragione", "Aristotele, maestro di color che sanno", "San Bernardo, allegoria dell'estasi"], correct: "Virgilio, allegoria della Ragione", suffix: ", il poeta mantovano autore dell'Eneide." },
+                        { id: "p4_s2", prefix: "Virgilio si presenta ricordando di aver cantato le imprese di ", options: ["Enea, eroe pio e fondatore", "Ulisse, simbolo dell'ingegno umano", "Augusto, portatore di pace imperiale"], correct: "Enea, eroe pio e fondatore", suffix: " della stirpe romana." },
+                        { id: "p4_s3", prefix: "Dante lo riconosce commosso come suo ", options: ["sommo maestro e modello di stile", "ispiratore e guida teologica", "protettore politico contro la Lupa"], correct: "sommo maestro e modello di stile", suffix: " da cui ha appreso la sua arte poetica." }
                     ],
                     explanation: "Virgilio incarna la Ragione umana e la sapienza classica inviata per soccorrere Dante nello smarrimento."
                 },
@@ -624,30 +624,30 @@
                     quizA: {
                         question: "Cosa significa l'espressione allegorico-testuale 'chi per lungo silenzio parea fioco' (v. 63)?",
                         options: [
-                            { text: "Che la voce di Virgilio era fioca perché spaventata dal ruggito del Leone.", correct: false },
+                            { text: "Che il poeta Virgilio, dimorando nel Limbo, aveva perso la capacità di comunicare chiaramente con i vivi.", correct: false },
                             { text: "Che la voce della Ragione e della sapienza classica era rimasta a lungo inascoltata nel disordine morale.", correct: true },
-                            { text: "Che Virgilio soffriva di una malattia alle corde vocali al momento dell'apparizione.", correct: false },
-                            { text: "Che l'ombra del poeta si trovava troppo lontana per farsi udire distintamente.", correct: false }
+                            { text: "Che l'ombra appariva sbiadita alla vista di Dante a causa dell'oscurità della selva peccaminosa.", correct: false },
+                            { text: "Che la poesia epica latina era stata ormai dimenticata a favore della nuova letteratura in volgare.", correct: false }
                         ],
-                        explanation: "Il 'lungo silenzio' simboleggia l'oblio della ragione e dei valori classici nel periodo di degrado morale."
+                        explanation: "Il 'lungo silenzio' simboleggia l'oblio della ragione e dei grandi valori classici prima del ravvedimento."
                     },
                     quizB: {
                         question: "Cosa rappresenta la figura di Virgilio sul piano allegorico ed entro quali limiti opera nel viaggio dantesco?",
                         options: [
-                            { text: "Rappresenta la Fede rivelata ed è in grado di condurre Dante fino all'Empireo.", correct: false },
+                            { text: "Rappresenta l'autorità dell'Impero Romano, unica forza capace di sconfiggere la corruzione della Chiesa.", correct: false },
                             { text: "Rappresenta la Ragione Umana e la Filosofia naturale; guida l'uomo fino alle soglie della Grazia.", correct: true },
-                            { text: "Rappresenta il solo potere imperiale privo di qualsiasi funzione etica.", correct: false },
-                            { text: "Rappresenta l'astronomia antica e le scienze matematiche.", correct: false }
+                            { text: "Rappresenta la Fede e la Teologia, indispensabili per comprendere a fondo i misteri dell'Oltretomba.", correct: false },
+                            { text: "Rappresenta la Sapienza divina, che interviene direttamente per salvare coloro che sono predestinati.", correct: false }
                         ],
-                        explanation: "Virgilio simboleggia la guida della Ragione, necessaria per prendere consapevolezza del male prima della Grazia."
+                        explanation: "Virgilio è la Ragione umana, necessaria per prendere consapevolezza del male, ma insufficiente per comprendere Dio (per cui servirà Beatrice)."
                     }
                 },
 
                 phase3: {
-                    question: "Dal punto di vista delle Scienze Umane, qual è il valore pedagogico della relazione tra Virgilio (maestro) e Dante (discepolo)? Perché di fronte alla crisi è indispensabile affidarsi a una guida?",
-                    keywords: ["maestro", "guida", "relazione", "fiducia", "educazione", "crescita", "sostegno", "modello", "consapevolezza"],
-                    minWords: 15,
-                    hints: "Sottolinea l'importanza del rispecchiamento, della fiducia pedagogica e del ruolo del maestro nello strutturare la consapevolezza."
+                    question: "Perché Dante sceglie proprio Virgilio come guida? Spiega cosa rappresenta a livello allegorico e definisci la natura del legame (affettivo, letterario, pedagogico) che si instaura tra i due.",
+                    keywords: ["ragione", "impero", "modello", "maestro", "stile", "padre", "enea", "classica", "filosofia", "autore", "salvezza"],
+                    minWords: 20,
+                    hints: "Considera Virgilio sia come allegoria della Ragione umana, sia come modello letterario supremo per Dante (l'autore dell'Eneide), e descrivi il loro rapporto allievo-maestro."
                 }
             },
             {
@@ -682,41 +682,41 @@
                         }
                     ],
                     selects: [
-                        { id: "p5_s1", prefix: "Virgilio avverte Dante che per salvarsi occorre intraprendere ", options: ["un altro viaggio", "una battaglia armata", "un ritorno a Firenze"], correct: "un altro viaggio", suffix: " attraverso i regni dell'Oltretomba." },
-                        { id: "p5_s2", prefix: "Profetizza poi l'arrivo del Veltro, cane da caccia che ciberà non terra né denaro (peltro), ma ", options: ["sapienza, amore e virtute", "forza, gloria e potere", "oro, terre e titoli"], correct: "sapienza, amore e virtute", suffix: "." },
-                        { id: "p5_s3", prefix: "Dante accetta di seguire Virgilio come guida nell'Inferno per iniziare il cammino di ", options: ["rigenerazione e salvezza", "fuga dalle responsabilita", "vendetta politica"], correct: "rigenerazione e salvezza", suffix: "." }
+                        { id: "p5_s1", prefix: "Virgilio avverte Dante che per salvarsi occorre intraprendere ", options: ["un percorso di espiazione nell'Oltretomba", "una fuga immediata verso il Purgatorio", "un isolamento ascetico e contemplativo"], correct: "un percorso di espiazione nell'Oltretomba", suffix: " prima di poter salire al colle." },
+                        { id: "p5_s2", prefix: "Profetizza poi l'arrivo del Veltro, cane da caccia che ciberà non terra né denaro, ma ", options: ["sapienza, amore e virtù (attributi trinitari)", "giustizia terrena e potere imperiale", "pace, concordia e filosofia naturale"], correct: "sapienza, amore e virtù (attributi trinitari)", suffix: " per sconfiggere la Lupa." },
+                        { id: "p5_s3", prefix: "Dante accetta di seguire Virgilio come guida nell'Inferno per iniziare il cammino di ", options: ["presa di coscienza del male e salvazione", "redenzione politica della città di Firenze", "purificazione immediata e beatitudine"], correct: "presa di coscienza del male e salvazione", suffix: "." }
                     ],
-                    explanation: "Il Veltro è il riformatore profetizzato che sconfiggerà la cupidigia. L'altro viaggio è la conoscenza del male."
+                    explanation: "Il Veltro è il misterioso riformatore profetizzato che sconfiggerà la cupidigia. L'altro viaggio è l'indispensabile discesa nella conoscenza del male."
                 },
 
                 phase2: {
                     quizA: {
                         question: "Di che cosa si nutrirà il 'Veltro' secondo le parole esplicite del testo di Virgilio (vv. 103-104)?",
                         options: [
-                            { text: "Di ricchezze materiali e vasti domini territoriali.", correct: false },
-                            { text: "Di sapienza, amore e virtute, ricollegandosi alle tre persone della Trinità.", correct: true },
-                            { text: "Di glorie militari e tributi versati dai popoli sottomessi.", correct: false },
-                            { text: "Di carne di fiere e vino prelibato nei banchetti.", correct: false },
+                            { text: "Delle virtù cardinali e teologali, necessarie per il ristabilimento dell'ordine ecclesiastico.", correct: false },
+                            { text: "Di sapienza, amore e virtute, ricollegandosi indirettamente alle tre persone della Trinità.", correct: true },
+                            { text: "Della pura contemplazione filosofica, distante dagli affari politici ed economici terreni.", correct: false },
+                            { text: "Della giustizia imperiale, l'unica virtù in grado di ristabilire l'equilibrio tra i due poteri.", correct: false },
                         ],
-                        explanation: "Il cibo del Veltro indica la sua natura spirituale e morale opposta alla cupidigia."
+                        explanation: "Il cibo del Veltro indica la sua natura spirituale e divina opposta alla cupidigia terrena."
                     },
                     quizB: {
-                        question: "Perché secondo Virgilio è necessario compiere 'altro viaggio' (attraverso la conoscenza del peccato) anziché salire direttamente il colle?",
+                        question: "Perché secondo Virgilio è necessario compiere 'altro viaggio' (attraverso l'Inferno) anziché salire direttamente il colle?",
                         options: [
                             { text: "Perché non si può superare il male senza prima averne riconosciuto le radici profonde.", correct: true },
-                            { text: "Perché il sentiero del colle era interrotto da una frana imprevista.", correct: false },
-                            { text: "Perché Dante doveva prima salutare i suoi amici nell'Oltretomba.", correct: false },
-                            { text: "Perché Virgilio voleva mostrare a Dante la propria dimora nel Limbo.", correct: false }
+                            { text: "Perché il volere divino ha decretato che Dante debba prima purificarsi direttamente nel fuoco del Purgatorio.", correct: false },
+                            { text: "Perché l'ascesi diretta è un privilegio riservato esclusivamente ai santi e ai martiri della fede cristiana.", correct: false },
+                            { text: "Perché la salvezza dell'anima richiede l'abbandono definitivo della vita terrena e della politica attiva.", correct: false }
                         ],
-                        explanation: "La presa di coscienza del peccato (Inferno) è la precondizione per la vera purificazione."
+                        explanation: "La presa di coscienza e l'esplorazione del peccato (Inferno) è la dolorosa precondizione per poter procedere alla vera purificazione."
                     }
                 },
 
                 phase3: {
-                    question: "Perché la conoscenza profonda delle proprie fragilità e del male (la discesa all'Inferno) è una tappa indispensabile prima di qualsiasi trasformazione e maturazione personale?",
-                    keywords: ["consapevolezza", "trasformazione", "male", "crescita", "autocritica", "cambiamento", "maturazione", "strada", "errore"],
-                    minWords: 15,
-                    hints: "Considera che la maturazione psicologica richiede di affrontare e non rimuovere le proprie ombre e i propri difetti."
+                    question: "Che cosa o chi rappresenta allegoricamente il Veltro? Sulla base dei tuoi studi, espandi la riflessione sulle varie ipotesi fatte dai critici nel corso dei secoli e qual è la conclusione più accreditata.",
+                    keywords: ["non si sa", "ignoto", "mistero", "impossibile", "nessuno sa", "enigma", "cangrande", "arrigo", "imperatore", "papa", "indeterminato", "incerta", "sconosciuto", "ipotesi", "dibattito"],
+                    minWords: 20,
+                    hints: "Ricorda le varie ipotesi storiche (Cangrande, un imperatore come Arrigo VII, un papa), ma soprattutto chiarisci che l'identità precisa rimane volutamente indeterminata e misteriosa."
                 }
             }
         ];
@@ -731,8 +731,8 @@
                 { title: "Colle Illuminato (vv. 13-18)", desc: "Simbolo della felicità terrena e della vita virtuosa. I suoi versi sono rischiarati dal Sole (pianeta)." },
                 { title: "La Paura (vv. 15-21)", desc: "L'emozione paralizzante provata dall'uomo di fronte al disordine morale e all'impossibilità di superare gli ostacoli da solo." },
                 { title: "La Ruinosa Discesa (v. 61)", desc: "Il regresso psicologico ed etico verso la selva che avviene quando l'uomo tenta di superare le proprie debolezze senza una guida." },
-                { title: "Allegoria", desc: "Procedimento mediante il quale un concetto morale o filosofico viene espresso attraverso un'immagine concreta." },
-                { title: "Il Veltro (vv. 101-111)", desc: "Cane da caccia profetizzato da Virgilio. Allegoria di un riformatore etico-politico destinato a scacciare la Lupa." }
+                { title: "Allegoria", desc: "Procedimento mediante il quale un concetto astratto o filosofico viene espresso attraverso un'immagine concreta e continuata." },
+                { title: "Il Veltro (vv. 101-111)", desc: "Cane da caccia profetizzato da Virgilio. Allegoria di un riformatore etico-politico dall'identità misteriosa destinato a scacciare la Lupa." }
             ],
             fiere: [
                 { title: "La Lonza (vv. 31-40)", desc: "Fiera agile dal pelo maculato. Allegoria della Lussuria (o dell'Invidia), vizio che attrae con le apparenze." },
@@ -932,7 +932,6 @@
            PHASE 1: SIDE-BY-SIDE PARAPHRASE LOGIC
            ========================================================================== */
         function renderPhase1(phase1Data) {
-            // Left column: Tercets
             const tercetsContainer = document.getElementById('original-tercets-container');
             tercetsContainer.innerHTML = '';
 
@@ -945,7 +944,6 @@
                 tercetsContainer.appendChild(tDiv);
             });
 
-            // Right column: Paraphrase selects
             const selectsContainer = document.getElementById('paraphrase-selects-container');
             selectsContainer.innerHTML = '';
 
@@ -960,7 +958,6 @@
                 let selectHtml = `<select id="${item.id}" onchange="registerPhase1Answer('${item.id}')" class="bg-slate-900 border border-amber-700/60 text-amber-300 font-semibold rounded-lg px-2.5 py-1 text-xs focus:outline-none focus:border-amber-400 my-1">
                     <option value="">-- seleziona opzione --</option>`;
                 
-                // Shuffle options
                 const shuffled = [...item.options].sort(() => Math.random() - 0.5);
                 shuffled.forEach(opt => {
                     selectHtml += `<option value="${opt}">${opt}</option>`;
@@ -1021,7 +1018,6 @@
            PHASE 2: DUAL QUIZ LOGIC
            ========================================================================== */
         function renderPhase2(phase2Data) {
-            // Render Quiz A (Textual)
             document.getElementById('quiz-qa-text').innerText = phase2Data.quizA.question;
             const qaContainer = document.getElementById('quiz-qa-options');
             qaContainer.innerHTML = '';
@@ -1038,7 +1034,6 @@
                 qaContainer.appendChild(btn);
             });
 
-            // Render Quiz B (Allegorical)
             document.getElementById('quiz-qb-text').innerText = phase2Data.quizB.question;
             const qbContainer = document.getElementById('quiz-qb-options');
             qbContainer.innerHTML = '';
@@ -1088,7 +1083,6 @@
                 playSound('wrong');
             }
 
-            // Check if both questions answered correctly to unlock next phase
             if (state.phase2Answers.qA === true && state.phase2Answers.qB === true) {
                 document.getElementById('phase2-next-btn').disabled = false;
             }
@@ -1137,16 +1131,16 @@
                     <div class="font-bold font-dante text-emerald-400 flex items-center gap-2">
                         <span>Eccellente Argomentazione Critica! (+40 XP)</span>
                     </div>
-                    <p class="leading-relaxed">Hai integrato efficacemente i concetti analitici chiave (${matched.join(', ')}). La tua risposta mostra un'ottima comprensione per le Scienze Umane.</p>
+                    <p class="leading-relaxed">Hai integrato efficacemente i concetti chiave (${matched.join(', ')}). La tua risposta mostra un'ottima integrazione dello studio teorico.</p>
                 `;
                 addXP(40);
                 playSound('correct');
                 document.getElementById('chapter-finish-btn').disabled = false;
-            } else if (isLongEnough || kwScore >= 2) {
+            } else if (isLongEnough || kwScore >= 1) {
                 feedback.className = 'p-4 rounded-xl border border-amber-600/60 bg-amber-950/40 text-amber-200 text-xs md:text-sm space-y-1.5';
                 feedback.innerHTML = `
                     <div class="font-bold font-dante text-amber-400">Analisi Buona / Parziale (+20 XP)</div>
-                    <p class="leading-relaxed">La riflessione è valida. Suggerimento guida per arricchirla: ${p3Data.hints}</p>
+                    <p class="leading-relaxed">La riflessione è valida ma mancano alcuni termini teorici. Suggerimento: ${p3Data.hints}</p>
                 `;
                 addXP(20);
                 playSound('correct');
@@ -1155,7 +1149,7 @@
                 feedback.className = 'p-4 rounded-xl border border-slate-700 bg-slate-900 text-slate-300 text-xs md:text-sm space-y-1.5';
                 feedback.innerHTML = `
                     <div class="font-bold font-dante text-amber-400">Riflessione da Ampliare</div>
-                    <p class="leading-relaxed">La risposta appare sintetica. Prova a svilupparla tenendo conto di questo suggerimento: ${p3Data.hints}</p>
+                    <p class="leading-relaxed">La risposta non attinge a sufficienza alle nozioni teoriche. Suggerimento: ${p3Data.hints}</p>
                     <button onclick="allowProceedAnyway()" class="mt-1 text-xs text-amber-400 underline hover:text-amber-300 block">Completa comunque il capitolo</button>
                 `;
                 playSound('wrong');
